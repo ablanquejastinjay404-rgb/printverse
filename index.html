@@ -1,0 +1,2248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PrintVerse - Your One-Stop Shop for Custom T-Shirts, Digital Products, Game Server Hosting, eBooks, Design Templates, and More">
+    <meta name="keywords" content="custom printing, t-shirts, digital movies, ebooks, website templates, picture frames, stickers, game server hosting, minecraft server">
+    <title>PrintVerse - Online Printing Shop</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/linklogo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css?v=36">
+    <link rel="stylesheet" href="css/auth-fix.css">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-bubbles">
+            <div class="loader-bubble"></div>
+            <div class="loader-bubble"></div>
+            <div class="loader-bubble"></div>
+            <div class="loader-bubble"></div>
+            <div class="loader-bubble"></div>
+        </div>
+        <div class="loader-text">PrintVerse</div>
+        <div class="loader-wait">Please wait</div>
+    </div>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Mobile Menu Toggle (left side) -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <div class="hamburger">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="PrintVerse Logo" class="logo-img">
+                    <span>PrintVerse</span>
+                </a>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search products..." aria-label="Search products">
+                    <button type="button" id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Navigation Icons -->
+                <nav class="nav-icons">
+                    <a href="#" class="nav-icon" id="homeBtn" title="Home">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-label">Home</span>
+                    </a>
+
+                    <a href="#" class="nav-icon" id="pinnedBtn" title="Pinned Products">
+                        <i class="fas fa-thumbtack"></i>
+                        <span class="pinned-count" id="pinnedCount">0</span>
+                        <span class="nav-label">Pinned</span>
+                    </a>
+                    <a href="https://facebook.com/printverse" target="_blank" class="nav-icon facebook-icon" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="nav-label">Facebook</span>
+                    </a>
+                    <a href="https://instagram.com/printverse" target="_blank" class="nav-icon instagram-icon" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span class="nav-label">Instagram</span>
+                    </a>
+                    <a href="https://tiktok.com/@printverse" target="_blank" class="nav-icon tiktok-icon" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                        <span class="nav-label">TikTok</span>
+                    </a>
+                    <a href="#" class="nav-icon feedback-icon" id="feedbackBtn" title="Feedback">
+                        <i class="fas fa-comment-dots"></i>
+                        <span class="nav-label">Feedback</span>
+                    </a>
+                </nav>
+                <div class="nav-auth">
+                    <a href="#" class="nav-auth-btn" id="userBtn">
+                        <img src="" alt="" class="nav-auth-avatar" id="userAvatar" style="display:none;">
+                        <i class="fas fa-user-circle nav-auth-icon" id="userIcon"></i>
+                        <span id="userLabel">Sign In</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Mobile Menu - Slide Panel -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+        <aside class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile menu">
+            <!-- Header -->
+            <div class="mobile-menu-header">
+                <h2 class="mobile-menu-title">
+                    <i class="fas fa-bars"></i>
+                    Menu
+                </h2>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="mobile-menu-body">
+                <!-- User Panel (Logged In) -->
+                <div class="mobile-user-panel" id="mobileUserPanel" style="display:none;">
+                    <a href="#" class="mobile-user-link" id="mobileUserBtn">
+                        <img src="" alt="" class="mobile-user-avatar" id="mobileUserAvatar" style="display:none;">
+                        <div class="mobile-user-placeholder" id="mobileUserPlaceholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="mobile-user-info">
+                            <div class="mobile-user-name" id="mobileUserName">User Name</div>
+                            <div class="mobile-user-email" id="mobileUserEmail">user@gmail.com</div>
+                        </div>
+                        <span class="mobile-user-badge">Member</span>
+                    </a>
+                </div>
+
+                <!-- Guest Panel (Logged Out) -->
+                <div class="mobile-guest-panel" id="mobileGuestPanel" style="display:none;">
+                    <a href="#" class="mobile-user-link" id="mobileGuestLoginBtn">
+                        <div class="mobile-user-placeholder">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <div class="mobile-user-info">
+                            <div class="mobile-user-name">Sign In</div>
+                            <div class="mobile-user-email">Access your account</div>
+                        </div>
+                        <span class="mobile-user-badge">Login</span>
+                    </a>
+                </div>
+
+                <div class="mobile-menu-divider" id="mobileUserDivider" style="display:none;"></div>
+
+                <!-- Search -->
+                <div class="mobile-menu-section">
+                    <div class="mobile-menu-search">
+                        <div class="search-bar">
+                            <input type="text" id="mobileSearchInput" placeholder="Search products..." aria-label="Search products">
+                            <button type="button" id="mobileSearchBtn" aria-label="Search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="mobile-menu-section">
+                    <span class="mobile-menu-section-title">Navigation</span>
+                    <a href="index.html" class="mobile-nav-link mobile-menu-item"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" class="mobile-nav-link mobile-menu-item pinned-link" id="mobilePinnedBtn"><i class="fas fa-thumbtack"></i> Pinned <span class="nav-badge" id="mobilePinnedCount">0</span></a>
+                </nav>
+
+                <!-- Social -->
+                <nav class="mobile-menu-section">
+                    <span class="mobile-menu-section-title">Connect</span>
+                    <a href="https://facebook.com/printverse" target="_blank" class="mobile-nav-link mobile-menu-item social-link facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://instagram.com/printverse" target="_blank" class="mobile-nav-link mobile-menu-item social-link instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://tiktok.com/@printverse" target="_blank" class="mobile-nav-link mobile-menu-item social-link tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                </nav>
+
+                <!-- Support -->
+                <nav class="mobile-menu-section">
+                    <span class="mobile-menu-section-title">Support</span>
+                    <a href="#" class="mobile-nav-link mobile-menu-item feedback-link" id="mobileFeedbackBtn"><i class="fas fa-comment-dots"></i> Feedback</a>
+                </nav>
+            </div>
+
+            <!-- Footer -->
+            <div class="mobile-menu-footer">
+                <div class="mobile-menu-social">
+                    <a href="https://facebook.com/printverse" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/printverse" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@printverse" target="_blank" class="tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="mobile-menu-version">PrintVerse v1.0.0</div>
+            </div>
+        </aside>
+        <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+    </header>
+
+    <div class="header-led-line"></div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-content" id="mainContent">
+        <!-- Home Page (Categories) -->
+        <section class="page home-page active" id="homePage">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-particles" id="heroParticles"></div>
+                <div class="hero-grid-overlay"></div>
+                <div class="hero-shark">
+                    <svg viewBox="0 0 240 100" class="shark-svg" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sharkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4a90d9"/>
+                                <stop offset="50%" stop-color="#2c6fbb"/>
+                                <stop offset="100%" stop-color="#1a4f8a"/>
+                            </linearGradient>
+                            <linearGradient id="sharkBelly" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#b8d4f0"/>
+                                <stop offset="100%" stop-color="#e0edf8"/>
+                            </linearGradient>
+                            <filter id="sharkLogoFilter">
+                                <feColorMatrix type="matrix" values="0 0 0 0 0.02  0 0 0 0 0.1  0 0 0 0 0.2  0 0 0 0.9 0">
+                                    <animate attributeName="values" 
+                                        values="0 0 0 0 0.02  0 0 0 0 0.1  0 0 0 0 0.2  0 0 0 0.9 0;
+                                                0 0 0 0 0.53  0 0 0 0 0.81  0 0 0 0 0.92  0 0 0 0.9 0;
+                                                0 0 0 0 0.02  0 0 0 0 0.1  0 0 0 0 0.2  0 0 0 0.9 0"
+                                        dur="3s" repeatCount="indefinite"/>
+                                </feColorMatrix>
+                            </filter>
+                        </defs>
+                        <g class="shark-body">
+                            <!-- Upper body -->
+                            <path d="M30,48 Q40,20 80,18 Q120,16 160,22 Q190,28 210,38 Q215,41 210,44 Q190,50 160,54 Q120,58 80,55 Q40,52 30,48 Z" fill="url(#sharkGrad)"/>
+                            <!-- Belly -->
+                            <path d="M30,48 Q40,55 80,55 Q120,58 160,54 Q190,50 210,44 Q205,48 190,52 Q160,58 120,60 Q80,60 40,56 Q32,52 30,48 Z" fill="url(#sharkBelly)" opacity="0.7"/>
+                            <!-- Nose/snout -->
+                            <path d="M210,38 L230,42 L228,36 Z" fill="#1a4f8a"/>
+                            <!-- Dorsal fin -->
+                            <path d="M95,18 L115,2 L130,18 Z" fill="#2c6fbb"/>
+                            <path d="M95,18 L115,2 L130,18 Z" fill="none" stroke="#4a90d9" stroke-width="0.5" opacity="0.5"/>
+                            <!-- Pectoral fin -->
+                            <path d="M90,52 L75,72 L105,56 Z" fill="#2c6fbb"/>
+                            <!-- Second dorsal fin -->
+                            <path d="M145,26 L155,16 L163,27 Z" fill="#2c6fbb"/>
+                            <!-- Anal fin -->
+                            <path d="M140,52 L148,62 L157,53 Z" fill="#2c6fbb"/>
+                            <!-- Eye -->
+                            <circle cx="195" cy="40" r="3" fill="#fff"/>
+                            <circle cx="196" cy="40" r="1.5" fill="#0a2744"/>
+                            <!-- Mouth line -->
+                            <path d="M210,42 Q220,44 228,41" fill="none" stroke="#0a2744" stroke-width="1" opacity="0.6"/>
+                            <!-- Teeth -->
+                            <path d="M208,42 L209,45 L210,42 L211,45 L212,42 L213,45 L214,42" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/>
+                            <!-- Gill slits -->
+                            <line x1="168" y1="36" x2="168" y2="50" stroke="#0a2744" stroke-width="2" opacity="0.8"/>
+                            <line x1="174" y1="35" x2="174" y2="51" stroke="#0a2744" stroke-width="2" opacity="0.8"/>
+                            <line x1="180" y1="36" x2="180" y2="50" stroke="#0a2744" stroke-width="2" opacity="0.8"/>
+                            <!-- Logo inside body -->
+                            <image href="images/logo.png" x="108" y="28" width="44" height="26" preserveAspectRatio="xMidYMid meet" filter="url(#sharkLogoFilter)"/>
+                            <!-- Caudal peduncle -->
+                            <path d="M30,48 Q25,46 22,44" fill="none" stroke="#1a4f8a" stroke-width="2" opacity="0.5"/>
+                        </g>
+                        <!-- Tail fin -->
+                        <g class="shark-tail">
+                            <path d="M32,44 Q22,34 12,18 Q4,6 2,4 Q8,20 16,30 Q24,38 30,42 Q32,43 32,44 Z" fill="#2c6fbb"/>
+                            <path d="M32,48 Q22,58 12,74 Q4,86 2,88 Q8,72 16,62 Q24,54 30,50 Q32,49 32,48 Z" fill="#2c6fbb"/>
+                            <path d="M32,44 Q20,42 2,42 Q20,46 32,48 Z" fill="#1a4f8a" opacity="0.4"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="hero-jellyfish">
+                    <svg viewBox="0 0 80 110" class="jellyfish-svg jellyfish-1" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="jellyGrad1" cx="50%" cy="30%" r="50%">
+                                <stop offset="0%" style="stop-color:#ff69b4;stop-opacity:0.9" />
+                                <stop offset="60%" style="stop-color:#ff1493;stop-opacity:0.5" />
+                                <stop offset="100%" style="stop-color:#c2185b;stop-opacity:0.2" />
+                            </radialGradient>
+                        </defs>
+                        <g class="jellyfish-body">
+                            <path d="M10,30 Q10,10 40,5 Q70,10 70,30 Q68,28 65,28 Q60,32 55,28 Q50,32 45,28 Q40,32 35,28 Q30,32 25,28 Q20,32 15,28 Q12,28 10,30 Z" fill="url(#jellyGrad1)"/>
+                            <path d="M20,28 Q40,18 60,28" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                            <path d="M30,22 Q40,16 50,22" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <ellipse cx="40" cy="38" rx="4" ry="3" fill="rgba(255,255,255,0.3)"/>
+                            <path d="M20,50 Q18,70 20,90" stroke="#ff69b4" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M20,50 Q18,70 20,90;M20,50 Q25,70 20,90;M20,50 Q18,70 20,90" dur="2.5s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M30,52 Q28,75 30,100" stroke="#ff69b4" stroke-width="1.8" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M30,52 Q28,75 30,100;M30,52 Q35,75 30,100;M30,52 Q28,75 30,100" dur="2.8s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M40,52 Q38,75 40,105" stroke="#ff1493" stroke-width="2" fill="none" opacity="0.7">
+                                <animate attributeName="d" values="M40,52 Q38,75 40,105;M40,52 Q43,75 40,105;M40,52 Q38,75 40,105" dur="2.2s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M50,52 Q48,75 50,98" stroke="#ff69b4" stroke-width="1.5" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M50,52 Q48,75 50,98;M50,52 Q53,75 50,98;M50,52 Q48,75 50,98" dur="3s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M60,50 Q58,70 60,88" stroke="#ff69b4" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M60,50 Q58,70 60,88;M60,50 Q63,70 60,88;M60,50 Q58,70 60,88" dur="2.6s" repeatCount="indefinite"/>
+                            </path>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 80 110" class="jellyfish-svg jellyfish-2" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="jellyGrad2" cx="50%" cy="30%" r="50%">
+                                <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0.9" />
+                                <stop offset="60%" style="stop-color:#0080ff;stop-opacity:0.5" />
+                                <stop offset="100%" style="stop-color:#0044aa;stop-opacity:0.2" />
+                            </radialGradient>
+                        </defs>
+                        <g class="jellyfish-body">
+                            <path d="M10,30 Q10,10 40,5 Q70,10 70,30 Q68,28 65,28 Q60,32 55,28 Q50,32 45,28 Q40,32 35,28 Q30,32 25,28 Q20,32 15,28 Q12,28 10,30 Z" fill="url(#jellyGrad2)"/>
+                            <path d="M20,28 Q40,18 60,28" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                            <path d="M30,22 Q40,16 50,22" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <ellipse cx="40" cy="38" rx="4" ry="3" fill="rgba(255,255,255,0.3)"/>
+                            <path d="M20,50 Q18,70 20,90" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M20,50 Q18,70 20,90;M20,50 Q25,70 20,90;M20,50 Q18,70 20,90" dur="2.3s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M30,52 Q28,75 30,100" stroke="#00ffff" stroke-width="1.8" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M30,52 Q28,75 30,100;M30,52 Q35,75 30,100;M30,52 Q28,75 30,100" dur="2.6s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M40,52 Q38,75 40,105" stroke="#0080ff" stroke-width="2" fill="none" opacity="0.7">
+                                <animate attributeName="d" values="M40,52 Q38,75 40,105;M40,52 Q43,75 40,105;M40,52 Q38,75 40,105" dur="2s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M50,52 Q48,75 50,98" stroke="#00ffff" stroke-width="1.5" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M50,52 Q48,75 50,98;M50,52 Q53,75 50,98;M50,52 Q48,75 50,98" dur="2.8s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M60,50 Q58,70 60,88" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M60,50 Q58,70 60,88;M60,50 Q63,70 60,88;M60,50 Q58,70 60,88" dur="2.4s" repeatCount="indefinite"/>
+                            </path>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 80 110" class="jellyfish-svg jellyfish-3" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="jellyGrad3" cx="50%" cy="30%" r="50%">
+                                <stop offset="0%" style="stop-color:#b388ff;stop-opacity:0.9" />
+                                <stop offset="60%" style="stop-color:#7c4dff;stop-opacity:0.5" />
+                                <stop offset="100%" style="stop-color:#4a0072;stop-opacity:0.2" />
+                            </radialGradient>
+                        </defs>
+                        <g class="jellyfish-body">
+                            <path d="M10,30 Q10,10 40,5 Q70,10 70,30 Q68,28 65,28 Q60,32 55,28 Q50,32 45,28 Q40,32 35,28 Q30,32 25,28 Q20,32 15,28 Q12,28 10,30 Z" fill="url(#jellyGrad3)"/>
+                            <path d="M20,28 Q40,18 60,28" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                            <path d="M30,22 Q40,16 50,22" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <ellipse cx="40" cy="38" rx="4" ry="3" fill="rgba(255,255,255,0.3)"/>
+                            <path d="M20,50 Q18,70 20,90" stroke="#b388ff" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M20,50 Q18,70 20,90;M20,50 Q25,70 20,90;M20,50 Q18,70 20,90" dur="2.4s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M30,52 Q28,75 30,100" stroke="#b388ff" stroke-width="1.8" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M30,52 Q28,75 30,100;M30,52 Q35,75 30,100;M30,52 Q28,75 30,100" dur="2.7s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M40,52 Q38,75 40,105" stroke="#7c4dff" stroke-width="2" fill="none" opacity="0.7">
+                                <animate attributeName="d" values="M40,52 Q38,75 40,105;M40,52 Q43,75 40,105;M40,52 Q38,75 40,105" dur="2.1s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M50,52 Q48,75 50,98" stroke="#b388ff" stroke-width="1.5" fill="none" opacity="0.5">
+                                <animate attributeName="d" values="M50,52 Q48,75 50,98;M50,52 Q53,75 50,98;M50,52 Q48,75 50,98" dur="2.9s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M60,50 Q58,70 60,88" stroke="#b388ff" stroke-width="2" fill="none" opacity="0.6">
+                                <animate attributeName="d" values="M60,50 Q58,70 60,88;M60,50 Q63,70 60,88;M60,50 Q58,70 60,88" dur="2.5s" repeatCount="indefinite"/>
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="hero-fish">
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-1" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-2" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-3" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-4" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-5" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-6" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-7" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 70 40" class="fish-svg fish-8" xmlns="http://www.w3.org/2000/svg">
+                        <g class="fish-body">
+                            <path d="M45,20 Q55,10 62,14 Q68,18 62,26 Q55,30 45,20 Z" fill="currentColor" opacity="0.6"/>
+                            <ellipse cx="35" cy="20" rx="22" ry="12" fill="currentColor"/>
+                            <path d="M42,10 L48,2 L52,12 Z" fill="currentColor"/>
+                            <polygon points="10,20 0,8 0,32" fill="currentColor"/>
+                            <path d="M26,30 L22,38 L30,32 Z" fill="currentColor"/>
+                            <circle cx="50" cy="16" r="2.5" fill="#fff"/>
+                            <circle cx="51" cy="16" r="1.2" fill="#0a2744"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="container">
+<div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="badge-bubble"></span>
+                            <span class="badge-bubble"></span>
+                            <span class="badge-bubble"></span>
+                            <span class="badge-bubble"></span>
+                            <span class="badge-bubble"></span>
+                            <i class="fas fa-bolt"></i> Trusted by 10,000+ Customers
+                        </div>
+                        <h1>Welcome to <span class="highlight">PrintVerse</span></h1>
+                        <p class="hero-subtitle">Custom printing, digital downloads, and creative templates. Dive into everything you need, all in one place. Quality that makes waves.</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary" id="shopNowBtn"><i class="fas fa-shopping-bag"></i> Shop Now</a>
+                            <a href="#freeDownloadsSection" class="btn btn-secondary btn-free-animated" id="whatWeOfferBtn"><i class="fas fa-gift"></i> Free</a>
+                            <a href="#aboutSection" class="btn btn-secondary" id="aboutUsBtn"><i class="fas fa-info-circle"></i> About Us</a>
+                            <button type="button" class="btn btn-secondary" id="heroContactBtn">
+                                <i class="fab fa-facebook-messenger"></i> Contact Us
+                            </button>
+                        </div>
+                        <div class="hero-trust">
+                            <div class="trust-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Fast Shipping</span>
+                            </div>
+                            <div class="trust-divider"></div>
+                            <div class="trust-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Secure Payment</span>
+                            </div>
+                            <div class="trust-divider"></div>
+                            <div class="trust-item">
+                                <i class="fas fa-headset"></i>
+                                <span>24/7 Support</span>
+                            </div>
+                            <div class="trust-divider"></div>
+                            <div class="trust-item">
+                                <i class="fas fa-award"></i>
+                                <span>Quality Guaranteed</span>
+                            </div>
+                        </div>
+                        <div class="hero-partner">
+                            <span class="hero-partner-label">Our Trusted Partner</span>
+                            <div class="hero-partner-logos">
+                                <a href="awakening-insights.html" class="hero-partner-link">
+                                    <div class="hero-partner-logo">
+                                        <img src="images/partners/awakening.png" alt="Awakening Insights">
+                                    </div>
+                                    <span class="hero-partner-name">Awakening Insights</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About Section -->
+            <section class="about-section" id="aboutSection">
+                <div class="container">
+                    <div class="about-grid">
+                        <div class="about-content reveal">
+                            <span class="about-eyebrow"><i class="fas fa-compass"></i> Who We Are</span>
+                            <h2 class="about-title">About <span class="about-highlight">PrintVerse</span></h2>
+                            <p class="about-text">We are a passionate team dedicated to bringing your creative visions to life. From custom apparel to digital products, game server hosting, and beyond, we offer high-quality services at affordable prices.</p>
+                            <p class="about-text">Whether you need custom t-shirts for your team, digital templates for your business, a Minecraft server for your community, or unique gifts for loved ones, we've got you covered with fast shipping, instant digital delivery, and exceptional customer support.</p>
+                            <div class="about-stats">
+                                <div class="stat-item" data-count="34">
+                                    <span class="stat-icon"><i class="fas fa-box-open"></i></span>
+                                    <span class="stat-number">0</span>
+                                    <span class="stat-plus">+</span>
+                                    <span class="stat-label">Products</span>
+                                </div>
+                                <div class="stat-item" data-count="10000">
+                                    <span class="stat-icon"><i class="fas fa-smile"></i></span>
+                                    <span class="stat-number">0</span>
+                                    <span class="stat-plus">K+</span>
+                                    <span class="stat-label">Happy Customers</span>
+                                </div>
+                                <div class="stat-item" data-count="8">
+                                    <span class="stat-icon"><i class="fas fa-th-large"></i></span>
+                                    <span class="stat-number">0</span>
+                                    <span class="stat-plus"></span>
+                                    <span class="stat-label">Categories</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-image reveal">
+                            <h3 class="about-videos-title"><i class="fas fa-play-circle"></i> Discover PrintVerse</h3>
+                            <p class="about-videos-subtitle">See the creativity, passion, and innovation behind every product we deliver</p>
+                            <div class="about-videos-grid">
+                                <div class="about-video-frame">
+                                    <video class="about-video" src="images/about-videos/about1.mp4" autoplay muted loop playsinline aria-label="PrintVerse About"></video>
+                                    <img src="images/about-logos/logo1.png" alt="PrintVerse Logo" class="about-video-logo">
+                                </div>
+                                <div class="about-video-frame">
+                                    <video class="about-video" src="images/about-videos/about2.mp4" autoplay muted loop playsinline aria-label="Our Products"></video>
+                                    <img src="images/about-logos/logo2.png" alt="PrintVerse Logo" class="about-video-logo">
+                                </div>
+                                <div class="about-video-frame">
+                                    <video class="about-video" src="images/about-videos/about3.mp4" autoplay muted loop playsinline aria-label="Our Team"></video>
+                                    <img src="images/about-logos/logo3.png" alt="PrintVerse Logo" class="about-video-logo">
+                                </div>
+                                <div class="about-video-frame">
+                                    <video class="about-video" src="images/about-videos/about4.mp4" autoplay muted loop playsinline aria-label="Our Mission"></video>
+                                    <img src="images/about-logos/logo4.png" alt="PrintVerse Logo" class="about-video-logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Categories Grid -->
+            <div class="section categories-section" id="categoriesSection">
+                <div class="categories-intro reveal">
+                    <span class="about-eyebrow"><i class="fas fa-th-large"></i> Our Collections</span>
+                    <h2 class="section-title">Turn Your Ideas Into <span class="highlight">Reality</span></h2>
+                    <p class="section-subtitle">Create. Customize. Delivered to You.</p>
+                </div>
+                <div class="container">
+                    <div class="categories-grid" id="categoriesGrid">
+                        <!-- Categories will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Free Downloads Section -->
+            <div class="section free-downloads-section" id="freeDownloadsSection">
+                <div class="free-downloads-intro reveal">
+                    <span class="about-eyebrow"><i class="fas fa-gift"></i> Free Downloads</span>
+                    <h2 class="section-title">Free Resources, <span class="highlight">Yours to Keep</span></h2>
+                    <p class="section-subtitle">Grab free templates, designs, and guides. No payment, no catch. Just download and create.</p>
+                </div>
+                <div class="container">
+                    <div class="free-downloads-grid" id="freeDownloadsGrid">
+                        <!-- Free downloads will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Types Section -->
+            <div class="section product-types-section" id="productTypes">
+                <div class="container">
+                    <div class="product-types-header reveal">
+                        <span class="about-eyebrow"><i class="fas fa-shopping-bag"></i> What We Offer</span>
+                        <h2 class="section-title">Choose Your <span class="highlight">Experience</span></h2>
+                        <p class="section-subtitle">Physical products delivered to your door or digital products available for instant download</p>
+                    </div>
+                    <div class="product-types-grid">
+                        <div class="product-type-card">
+                            <div class="card-glow digital-glow"></div>
+                            <span class="product-type-badge badge-digital"><i class="fas fa-bolt"></i> Digital</span>
+                            <div class="product-type-icon icon-digital">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                            <h3>Digital Products</h3>
+                            <p>Instantly downloadable files and services you can use right away. No shipping, no waiting.</p>
+                            <ul class="product-type-features">
+                                <li><i class="fas fa-bolt"></i> Instant download or activation</li>
+                                <li><i class="fas fa-redo"></i> Unlimited re-downloads</li>
+                                <li><i class="fas fa-laptop"></i> Access on any device</li>
+                                <li><i class="fas fa-leaf"></i> Eco-friendly, no shipping</li>
+                            </ul>
+                            <div class="product-type-cta">
+                                <a href="index.html#categoriesSection" onclick="event.preventDefault(); app.goToCategories();" class="btn-explore btn-digital"><i class="fas fa-arrow-right"></i> Explore Digital</a>
+                            </div>
+                        </div>
+                        <div class="product-type-card">
+                            <div class="card-glow physical-glow"></div>
+                            <span class="product-type-badge badge-physical"><i class="fas fa-box"></i> Physical</span>
+                            <div class="product-type-icon icon-physical">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <h3>Physical Products</h3>
+                            <p>Real, tangible items printed and shipped directly to your doorstep.</p>
+                            <ul class="product-type-features">
+                                <li><i class="fas fa-truck"></i> Shipped to your address</li>
+                                <li><i class="fas fa-hand-holding"></i> Tangible, hold-in-your-hand items</li>
+                                <li><i class="fas fa-gift"></i> Great for gifts & personal use</li>
+                                <li><i class="fas fa-palette"></i> Premium print quality</li>
+                            </ul>
+                            <div class="product-type-cta">
+                                <a href="index.html#categoriesSection" onclick="event.preventDefault(); app.goToCategories();" class="btn-explore btn-physical"><i class="fas fa-arrow-right"></i> Explore Physical</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us Section -->
+            <div class="section why-choose-section" id="whyChooseSection">
+                <div class="container">
+                    <div class="why-choose-header reveal">
+                        <span class="about-eyebrow"><i class="fas fa-heart"></i> Why Choose Us</span>
+                        <h2 class="section-title">The PrintVerse <span class="highlight">Promise</span></h2>
+                        <p class="section-subtitle">From cart to doorstep, we're committed to giving you the best experience</p>
+                    </div>
+                    <div class="why-choose-grid">
+                        <div class="why-choose-card reveal">
+                            <div class="why-choose-icon"><i class="fas fa-shipping-fast"></i></div>
+                            <h3>Fast Shipping</h3>
+                            <p>Quick processing and reliable delivery so your order reaches you without the wait.</p>
+                        </div>
+                        <div class="why-choose-card reveal">
+                            <div class="why-choose-icon"><i class="fas fa-lock"></i></div>
+                            <h3>Secure Payment</h3>
+                            <p>Your details stay protected with encrypted, trusted payment gateways every time.</p>
+                        </div>
+                        <div class="why-choose-card reveal">
+                            <div class="why-choose-icon"><i class="fas fa-headset"></i></div>
+                            <h3>24/7 Support</h3>
+                            <p>Our friendly team is here around the clock to help with any question or concern.</p>
+                        </div>
+                        <div class="why-choose-card reveal">
+                            <div class="why-choose-icon"><i class="fas fa-award"></i></div>
+                            <h3>Quality Guaranteed</h3>
+                            <p>Premium materials and careful craftsmanship backed by our satisfaction promise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Page -->
+        <section class="page category-page" id="categoryPage">
+            <div class="category-header">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <span id="categoryName">Category</span>
+                    </div>
+                    <h1 class="page-title" id="categoryTitle">Category Name</h1>
+                    <p class="page-description" id="categoryDescription">Category description</p>
+                    <button class="btn btn-outline-light btn-sm category-back-btn" onclick="app.goToCategories()">
+                        <i class="fas fa-arrow-left"></i> Back to Categories
+                    </button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+                
+                <!-- All Categories Navigation -->
+                <div class="categories-navigation">
+                    <h3 class="categories-nav-title">Browse All Categories</h3>
+                    <div class="categories-nav-grid" id="categoriesNavGrid">
+                        <!-- Categories will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pinned Products Page -->
+        <section class="page pinned-page" id="pinnedPage">
+            <div class="pinned-hero">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>Pinned Products</span>
+                    </div>
+                    <h1 class="page-title">Pinned Products</h1>
+                    <p class="page-description">Your curated collection</p>
+                </div>
+            </div>
+            <div class="container">
+                <!-- Instruction -->
+                <div class="pinned-instruction">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Pin products from the catalog using the <strong><i class="fas fa-thumbtack"></i> thumbtack</strong> icon to save them here. Tick the boxes to select items, switch between <strong>Digital</strong> and <strong>Physical</strong> tabs, then buy individually or in bulk with <strong>Buy All</strong>.</p>
+                </div>
+                <!-- Summary Bar -->
+                <div class="pinned-summary-bar" id="pinnedSummaryBar">
+                    <div class="pinned-summary-stats">
+                        <div class="summary-stat">
+                            <span class="summary-stat-label">Selected Items</span>
+                            <span class="summary-stat-value" id="pinnedSelectedCount">0</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-stat">
+                            <span class="summary-stat-label">Estimated Total</span>
+                            <span class="summary-stat-value summary-total" id="pinnedSelectedPrice">â‚±0.00</span>
+                        </div>
+                    </div>
+                    <div class="pinned-summary-actions">
+                        <button class="btn btn-sm btn-digital" id="buyAllDigitalBtn" onclick="app.buyAllPinned('digital')" style="display:none;">
+                            <i class="fas fa-download"></i> Buy All Digital
+                        </button>
+                        <button class="btn btn-sm btn-physical" id="buyAllPhysicalBtn" onclick="app.buyAllPinned('physical')" style="display:none;">
+                            <i class="fas fa-truck"></i> Buy All Physical
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary" id="selectAllContainer" onclick="app.toggleSelectAll()">
+                            <i class="fas fa-check-double"></i> Select All
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" id="clearAllPinnedBtn" onclick="app.clearAllPinned()">
+                            <i class="fas fa-trash-alt"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+                <!-- Type Tabs -->
+                <div class="pinned-type-tabs" id="pinnedTypeTabs">
+                    <button class="type-tab" data-type="digital" onclick="app.filterPinnedByType('digital')">
+                        <i class="fas fa-download"></i> Digital
+                    </button>
+                    <button class="type-tab" data-type="physical" onclick="app.filterPinnedByType('physical')">
+                        <i class="fas fa-truck"></i> Physical
+                    </button>
+                </div>
+                <!-- Pinned Grid -->
+                <div class="pinned-content" id="pinnedContent">
+                    <!-- Pinned products will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Detail Page -->
+        <section class="page product-page" id="productPage">
+            <div class="product-header">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="#" id="productCategoryLink">Category</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <span id="productNameBreadcrumb">Product</span>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm category-back-btn" onclick="app.goToProductCategory()">
+                        <i class="fas fa-arrow-left"></i> Back to Products
+                    </button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="product-detail">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery">
+                        <div class="main-image">
+                            <img src="" alt="" id="mainProductImage">
+                            <div class="product-type-badge" id="productTypeBadge"></div>
+                            <button class="gallery-nav prev" id="prevImage"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-nav next" id="nextImage"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="thumbnail-gallery" id="thumbnailGallery">
+                            <!-- Thumbnails will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="product-info">
+                        <div class="product-info-top">
+                            <h1 class="product-title" id="productTitle">Product Name</h1>
+                            <div class="product-rating" id="productRating">
+                                <!-- Rating stars will be loaded dynamically -->
+                            </div>
+                            <div class="product-price" id="productPrice">
+                                <!-- Price will be loaded dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="product-description-box">
+                            <p class="product-description" id="productDescription">Product description</p>
+                        </div>
+                        
+                        <!-- Options for Physical Products -->
+                        <div class="product-options" id="productOptions">
+                            <!-- Size, Color, etc. will be loaded dynamically -->
+                        </div>
+                        
+                        <!-- Quantity Selector -->
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn minus" id="qtyMinus">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="100">
+                                <button class="qty-btn plus" id="qtyPlus">+</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-lg btn-pin" id="pinProductBtn">
+                                <i class="fas fa-thumbtack"></i> Pin Product
+                            </button>
+                            <button class="btn btn-accent btn-lg btn-buy" id="buyNowBtn">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+
+
+                        <!-- Product Features -->
+                        <div class="product-features" id="productFeatures">
+                            <!-- Features will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Products -->
+                <div class="section">
+                    <h2 class="section-title">Related Products</h2>
+                    <div class="products-grid" id="relatedProducts">
+                        <!-- Related products will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Page -->
+        <section class="page feedback-page" id="feedbackPage">
+            <div class="pinned-hero">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>Feedback</span>
+                    </div>
+                    <h1 class="page-title">We'd Love Your <span class="highlight">Feedback</span></h1>
+                    <p class="page-description">Help us improve PrintVerse by sharing your thoughts and experiences</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="feedback-wrapper">
+                    <div class="feedback-card">
+                        <div class="feedback-card-glow"></div>
+                        <div class="feedback-header-section">
+                            <div class="feedback-icon-ring">
+                                <div class="feedback-icon-inner">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                            </div>
+                            <h2 class="feedback-title">Your Voice <span class="highlight">Matters</span></h2>
+                            <p class="feedback-subtitle">We value your input and use it to make PrintVerse better every day. Whether you have a suggestion, spotted something that isn't working, or simply want to share your experience, we're all ears. Feel free to use any email, even a random one, your privacy matters to us.</p>
+                        </div>
+
+                        <div class="feedback-categories">
+                            <div class="feedback-cat-card">
+                                <div class="feedback-cat-icon ideas">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="feedback-cat-content">
+                                    <h4>Share Ideas &amp; Suggestions</h4>
+                                    <p>Have a feature request or improvement idea? We'd love to hear it.</p>
+                                </div>
+                            </div>
+                            <div class="feedback-cat-card">
+                                <div class="feedback-cat-icon bugs">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <div class="feedback-cat-content">
+                                    <h4>Report a Problem or Bug</h4>
+                                    <p>Spotted something broken? Let us know so we can fix it fast.</p>
+                                </div>
+                            </div>
+                            <div class="feedback-cat-card">
+                                <div class="feedback-cat-icon love">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="feedback-cat-content">
+                                    <h4>Tell Us What You Love</h4>
+                                    <p>Enjoying PrintVerse? Your kind words keep us motivated.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feedback-cta">
+                            <a href="https://formsubmit.co/el/gomiwi" target="_blank" rel="noopener" class="btn btn-feedback">
+                                <span class="btn-feedback-text">
+                                    <i class="fas fa-paper-plane"></i> Send Feedback
+                                </span>
+                                <span class="btn-feedback-glow"></span>
+                            </a>
+                            <div class="feedback-trust">
+                                <div class="trust-badge">
+                                    <i class="fas fa-user-secret"></i>
+                                    <span>Use a Random Email for Privacy</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>We Never Store or Share Your Info</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Takes Less Than a Minute</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Checkout Page -->
+        <section class="page checkout-page" id="checkoutPage">
+            <div class="checkout-header">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+
+                        <span>Checkout</span>
+                    </div>
+                    <h1 class="page-title"><i class="fas fa-lock"></i> Secure Checkout</h1>
+                    <p class="page-description">Complete your order safely and securely</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="checkout-content">
+                    <!-- Progress Steps -->
+                    <div class="checkout-steps">
+                        <div class="step active">
+                            <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                            <span class="step-label">Checkout</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                            <span class="step-label">Confirm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-layout">
+                        <div class="checkout-form-container">
+                            <!-- ==================== DIGITAL CHECKOUT FORM ==================== -->
+                            <form id="digitalCheckoutForm" class="checkout-form" style="display: none;" action="https://api.staticforms.dev/submit" method="POST">
+                                <input type="hidden" name="accessKey">
+                                <input type="hidden" name="subject" id="d.subject" value="New Digital Order">
+                                <input type="hidden" name="orderId" id="d.orderId">
+                                <input type="hidden" name="items" id="d.items">
+                                <input type="hidden" name="total" id="d.total">
+                                <input type="hidden" name="formType" value="Digital">
+                                <input type="honeypot" name="honeypot" style="display:none">
+                                <div class="form-section">
+                                    <div class="form-section-header">
+                                        <i class="fas fa-user"></i>
+                                        <h3>Contact Information</h3>
+                                    </div>
+                                    <div class="form-section-content">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="d.fullName">Full Name *</label>
+                                                <input type="text" id="d.fullName" name="fullName" required placeholder="Juan Dela Cruz">
+                                            </div>
+                                            <div class="form-group email-highlight">
+                                                <label for="d.email">Email Address * <span class="email-badge"><i class="fas fa-envelope"></i> Download link will be sent here</span></label>
+                                                <input type="email" id="d.email" name="email" required placeholder="juan@example.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="d.phone">Phone Number *</label>
+                                            <input type="tel" id="d.phone" name="phone" required placeholder="+63 9XX XXX XXXX">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="digital-checkout-notice">
+                                    <div class="notice-box">
+                                        <div class="notice-icon">
+                                            <i class="fas fa-download"></i>
+                                        </div>
+                                        <div class="notice-content">
+                                            <h4><i class="fas fa-info-circle"></i> Digital Product Purchase</h4>
+                                            <p>After completing your order and confirming payment, we will send the download link to your email address. Please make sure your email is correct.</p>
+                                            <ul class="notice-steps">
+                                                <li><i class="fas fa-check"></i> Complete your order</li>
+                                                <li><i class="fas fa-check"></i> Confirm payment</li>
+                                                <li><i class="fas fa-check"></i> Receive download link via email</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-section">
+                                    <div class="form-section-header">
+                                        <i class="fas fa-credit-card"></i>
+                                        <h3>Payment Method</h3>
+                                    </div>
+                                    <div class="form-section-content">
+                                        <div class="payment-options">
+                                            <label class="payment-option">
+                                                <input type="radio" name="d.paymentMethod" value="gcash" required>
+                                                <div class="payment-option-content">
+                                                    <i class="fas fa-mobile-alt"></i>
+                                                    <span>GCash</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="d.paymentMethod" value="paypal">
+                                                <div class="payment-option-content">
+                                                    <i class="fab fa-paypal"></i>
+                                                    <span>PayPal</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="checkout-actions">
+
+                                    <button type="submit" class="btn btn-primary btn-lg place-order-btn">
+                                        <i class="fas fa-lock"></i> Proceed to Payment
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <!-- ==================== PHYSICAL CHECKOUT FORM ==================== -->
+                            <form id="physicalCheckoutForm" class="checkout-form" style="display: none;" action="https://api.staticforms.dev/submit" method="POST">
+                                <input type="hidden" name="accessKey">
+                                <input type="hidden" name="subject" id="p.subject" value="New Physical Order">
+                                <input type="hidden" name="orderId" id="p.orderId">
+                                <input type="hidden" name="items" id="p.items">
+                                <input type="hidden" name="total" id="p.total">
+                                <input type="hidden" name="formType" value="Physical">
+                                <input type="honeypot" name="honeypot" style="display:none">
+                                <div class="form-section">
+                                    <div class="form-section-header">
+                                        <i class="fas fa-user"></i>
+                                        <h3>Contact Information</h3>
+                                    </div>
+                                    <div class="form-section-content">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="p.fullName">Full Name *</label>
+                                                <input type="text" id="p.fullName" name="fullName" required placeholder="Juan Dela Cruz">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="p.email">Email Address *</label>
+                                                <input type="email" id="p.email" name="email" required placeholder="juan@example.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="p.phone">Phone Number *</label>
+                                            <input type="tel" id="p.phone" name="phone" required placeholder="+63 9XX XXX XXXX">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-section">
+                                    <div class="form-section-header">
+                                        <i class="fas fa-truck"></i>
+                                        <h3>Shipping Address</h3>
+                                    </div>
+                                    <div class="form-section-content">
+                                        <div class="form-group">
+                                            <label for="p.address">Street Address *</label>
+                                            <input type="text" id="p.address" name="address" required placeholder="House #, Street Name">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="p.barangay">Barangay</label>
+                                                <input type="text" id="p.barangay" name="barangay" placeholder="Barangay (optional)">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="p.city">City/Municipality *</label>
+                                                <input type="text" id="p.city" name="city" required placeholder="City or Municipality">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="p.province">Province *</label>
+                                                <input type="text" id="p.province" name="province" required placeholder="Province">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="p.zipCode">ZIP Code *</label>
+                                                <input type="text" id="p.zipCode" name="zipCode" required placeholder="0000">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="p.instructions">Delivery Instructions</label>
+                                            <textarea id="p.instructions" name="instructions" rows="2" placeholder="Landmark, delivery time preference, etc."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-section">
+                                    <div class="form-section-header">
+                                        <i class="fas fa-credit-card"></i>
+                                        <h3>Payment Method</h3>
+                                    </div>
+                                    <div class="form-section-content">
+                                        <div class="payment-options">
+                                            <label class="payment-option">
+                                                <input type="radio" name="p.paymentMethod" value="gcash" required>
+                                                <div class="payment-option-content">
+                                                    <i class="fas fa-mobile-alt"></i>
+                                                    <span>GCash</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="p.paymentMethod" value="paypal">
+                                                <div class="payment-option-content">
+                                                    <i class="fab fa-paypal"></i>
+                                                    <span>PayPal</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="checkout-actions">
+
+                                    <button type="submit" class="btn btn-primary btn-lg place-order-btn">
+                                        <i class="fas fa-lock"></i> Proceed to Payment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Order Summary Sidebar -->
+                        <div class="checkout-summary">
+                            <div class="summary-card">
+                                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                                <div class="checkout-items" id="checkoutItems">
+                                    <!-- Items will be loaded dynamically -->
+                                </div>
+                                <div class="summary-total">
+                                    <span>Total:</span>
+                                    <span id="checkoutTotal">â‚±0.00</span>
+                                </div>
+                                <div class="secure-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Secure & Encrypted Checkout</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Page -->
+        <section class="page payment-page" id="paymentPage">
+            <div class="payment-header">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>Payment</span>
+                    </div>
+                    <h1 class="page-title"><i class="fas fa-lock"></i> Complete Your Payment</h1>
+                    <p class="page-description">Scan the QR code or use the account details below</p>
+                    <a href="index.html" class="btn btn-secondary btn-sm" style="margin-top: 0.5rem;"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="payment-success-banner">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="success-text">
+                        <h2>Order Placed Successfully!</h2>
+                        <p>Order ID: <strong id="orderId">PV-000000</strong></p>
+                    </div>
+                </div>
+
+                <div class="receipt-download-section">
+                    <button type="button" class="btn btn-primary btn-lg receipt-btn" onclick="app.downloadReceipt()">
+                        <i class="fas fa-file-download"></i> Download Receipt
+                    </button>
+                    <p class="receipt-hint">Save a copy of your order for your records</p>
+                </div>
+                
+                <div class="payment-content">
+                    <div class="payment-methods">
+                        <!-- GCash Payment -->
+                        <div class="payment-method-card" id="gcashPayment" style="display: none;">
+                            <div class="payment-method-header gcash-header">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h3>GCash</h3>
+                            </div>
+                            <div class="payment-method-body">
+                                <div class="amount-display">
+                                    <span class="amount-label">Amount to Pay</span>
+                                    <span class="amount-value" id="gcashAmount">â‚±0.00</span>
+                                </div>
+                                <div class="qr-section">
+                                    <div class="qr-wrapper">
+                                        <div class="qr-placeholder"><i class="fas fa-qrcode"></i><p>GCash QR</p></div>
+                                    </div>
+                                    <p class="qr-hint"><i class="fas fa-qrcode"></i> Scan QR code to pay</p>
+                                </div>
+                                <div class="account-details-card">
+                                    <div class="account-row">
+                                        <div class="account-info">
+                                            <span class="account-label">GCash Number</span>
+                                            <span class="account-value" id="gcashNumber">+63 9XX XXX XXXX</span>
+                                        </div>
+                                        <button type="button" class="btn-copy" onclick="app.copyToClipboard('+639XXXXXXXXX')">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <div class="account-row">
+                                        <div class="account-info">
+                                            <span class="account-label">Account Name</span>
+                                            <span class="account-value">PrintVerse Shop</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-steps-card">
+                                    <h4><i class="fas fa-list-ol"></i> Steps to Pay</h4>
+                                    <ol class="steps-list">
+                                        <li><span class="step-num">1</span> Open your GCash app</li>
+                                        <li><span class="step-num">2</span> Tap "Send Money"</li>
+                                        <li><span class="step-num">3</span> Enter the GCash number above</li>
+                                        <li><span class="step-num">4</span> Enter the exact amount</li>
+                                        <li><span class="step-num">5</span> Add your Order ID in the message</li>
+                                        <li><span class="step-num">6</span> Confirm the transfer</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- PayPal Payment -->
+                        <div class="payment-method-card" id="paypalPayment" style="display: none;">
+                            <div class="payment-method-header paypal-header">
+                                <i class="fab fa-paypal"></i>
+                                <h3>PayPal</h3>
+                            </div>
+                            <div class="payment-method-body">
+                                <div class="amount-display">
+                                    <span class="amount-label">Amount to Pay</span>
+                                    <span class="amount-value" id="paypalAmount">â‚±0.00</span>
+                                </div>
+                                <div class="qr-section">
+                                    <div class="qr-wrapper">
+                                        <div class="qr-placeholder"><i class="fas fa-qrcode"></i><p>PayPal QR</p></div>
+                                    </div>
+                                    <p class="qr-hint"><i class="fas fa-qrcode"></i> Scan QR code to pay</p>
+                                </div>
+                                <div class="account-details-card">
+                                    <div class="account-row">
+                                        <div class="account-info">
+                                            <span class="account-label">PayPal Email</span>
+                                            <span class="account-value" id="paypalEmail">payments@printverse.com</span>
+                                        </div>
+                                        <button type="button" class="btn-copy" onclick="app.copyToClipboard('payments@printverse.com')">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <div class="account-row">
+                                        <div class="account-info">
+                                            <span class="account-label">Account Name</span>
+                                            <span class="account-value">PrintVerse Shop</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-steps-card">
+                                    <h4><i class="fas fa-list-ol"></i> Steps to Pay</h4>
+                                    <ol class="steps-list">
+                                        <li><span class="step-num">1</span> Log in to your PayPal account</li>
+                                        <li><span class="step-num">2</span> Click "Send & Request"</li>
+                                        <li><span class="step-num">3</span> Enter the PayPal email above</li>
+                                        <li><span class="step-num">4</span> Enter the exact amount</li>
+                                        <li><span class="step-num">5</span> Add your Order ID in the note</li>
+                                        <li><span class="step-num">6</span> Click "Send Payment Now"</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Help Section -->
+                    <div class="payment-help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="help-content">
+                            <h4>Need Help?</h4>
+                            <p>Contact us via Facebook Messenger for any questions about your order.</p>
+                            <a href="https://facebook.com/printverse" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="fab fa-facebook-messenger"></i> Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="led-separator-wrapper footer-led">
+        <div class="led-separator"></div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <img src="images/footerlogo.png" alt="PrintVerse Logo" class="footer-logo-img"> PrintVerse
+                    </div>
+                    <p>Print Your Imagination</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://facebook.com/printverse" target="_blank" class="social-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://facebook.com/printverse" target="_blank" class="social-messenger"><i class="fab fa-facebook-messenger"></i></a>
+                    <a href="https://tiktok.com/@printverse" target="_blank" class="social-tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://instagram.com/printverse" target="_blank" class="social-instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-main">
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'t-shirts'});return false;">Custom T-Shirts</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'digital-movies'});return false;">Digital Movies</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'picture-frames'});return false;">Picture Frames</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'ebooks'});return false;">eBooks</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'website-templates'});return false;">Website Templates</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'stickers'});return false;">Custom Stickers</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.navigateTo('category',{category:'game-servers'});return false;">Game Server Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><i class="fas fa-headset"></i> <a href="#">Help Center</a></li>
+                        <li><i class="fas fa-shipping-fast"></i> <a href="#">Shipping Info</a></li>
+                        <li><i class="fas fa-undo"></i> <a href="#">Returns</a></li>
+                        <li><i class="fas fa-tape"></i> <a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +63 939 594 6617</li>
+                        <li><i class="fab fa-facebook-messenger"></i> <a href="https://facebook.com/printverse" target="_blank">Messenger</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Payment</h4>
+                    <div class="payment-box">
+                        <span class="pay-gcash"><i class="fas fa-mobile-alt"></i> GCash</span>
+                        <span class="pay-paypal"><i class="fab fa-paypal"></i> PayPal</span>
+                    </div>
+                    <div class="trust-badges">
+                        <span><i class="fas fa-lock"></i> Secure</span>
+                        <span><i class="fas fa-shield-alt"></i> Protected</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-verse">&ldquo;Commit to the LORD whatever you do, and he will establish your plans.&rdquo; Proverbs 16:3</p>
+                <p>&copy; 2026 PrintVerse. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== NOTIFICATION ==================== -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationMessage">Item added</span>
+    </div>
+
+    <!-- ==================== CONTACT MODAL ==================== -->
+    <div class="contact-modal-overlay" id="contactModalOverlay">
+        <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+            <button type="button" class="contact-modal-close" id="contactModalClose" aria-label="Close"><i class="fas fa-times"></i></button>
+            <h3 class="contact-modal-title" id="contactModalTitle">Contact Us</h3>
+            <p class="contact-modal-subtitle">Choose how you'd like to reach us</p>
+            <div class="contact-options">
+                <a class="contact-option" href="tel:+639395946617">
+                    <span class="contact-option-icon"><i class="fas fa-phone"></i></span>
+                    <span class="contact-option-text">
+                        <span class="contact-option-label">Call Us</span>
+                        <span class="contact-option-value">+63 939 594 6617</span>
+                    </span>
+                </a>
+                <a class="contact-option" href="https://www.facebook.com/profile.php?id=61583029994690" target="_blank" rel="noopener">
+                    <span class="contact-option-icon messenger"><i class="fab fa-facebook-messenger"></i></span>
+                    <span class="contact-option-text">
+                        <span class="contact-option-label">Messenger</span>
+                        <span class="contact-option-value">Chat on Facebook Messenger</span>
+                    </span>
+                </a>
+                <a class="contact-option" href="https://facebook.com/printverse" target="_blank" rel="noopener">
+                    <span class="contact-option-icon fb"><i class="fab fa-facebook-f"></i></span>
+                    <span class="contact-option-text">
+                        <span class="contact-option-label">Facebook Page</span>
+                        <span class="contact-option-value">Visit our FB page</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== AUTH SPLASH ==================== -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-modal">
+            <button class="auth-close" id="authClose" title="Skip for now"><i class="fas fa-times"></i></button>
+            <div class="auth-brand">
+                <img src="images/logo.png" alt="PrintVerse" class="auth-logo" onerror="this.style.display='none';">
+                <h1 class="auth-welcome">Welcome to PrintVerse</h1>
+                <p class="auth-subtitle">Sign up or log in to save your favorites and track orders.</p>
+            </div>
+            <div class="auth-header">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+            </div>
+            <div class="auth-body">
+                <form class="auth-form active" id="authFormLogin" autocomplete="on">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h3>Welcome Back</h3>
+                        <p>Sign in to access your account</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="loginEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" name="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+                        <a class="auth-forgot" id="forgotLink">Forgot Password?</a>
+                    </div>
+                    <div class="auth-error" id="loginError"></div>
+                    <button type="submit" class="auth-submit" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                </form>
+                <form class="auth-form" id="authFormForgot" autocomplete="off">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3>Reset Password</h3>
+                        <p>Enter your Google account and set a new password</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="forgotEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> New Password</label>
+                        <input type="password" name="newPassword" id="forgotNewPassword" placeholder="Enter new password (min 4 chars)" autocomplete="new-password" required minlength="4">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="forgotConfirmPassword" placeholder="Confirm new password" autocomplete="new-password" required>
+                    </div>
+                    <div class="auth-error" id="forgotError"></div>
+                    <div class="auth-success" id="forgotSuccess"></div>
+                    <button type="submit" class="auth-submit" id="forgotBtn"><i class="fas fa-key"></i> Reset Password</button>
+                    <a class="auth-forgot back-link" id="forgotBackLink"><i class="fas fa-arrow-left"></i> Back to Login</a>
+                </form>
+                <form class="auth-form" id="authFormSignup" autocomplete="on">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>Create Account</h3>
+                        <p>Join PrintVerse to save favorites and track orders</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> First Name</label>
+                        <input type="text" name="firstName" id="signupFirstName" placeholder="Enter your first name" autocomplete="given-name" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> Middle Name <span class="auth-optional">(optional)</span></label>
+                        <input type="text" name="middleName" id="signupMiddleName" placeholder="Enter your middle name" autocomplete="additional-name">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> Last Name</label>
+                        <input type="text" name="lastName" id="signupLastName" placeholder="Enter your last name" autocomplete="family-name" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="signupEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" name="password" id="signupPassword" placeholder="At least 4 characters" autocomplete="new-password" required minlength="4">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="signupConfirm" placeholder="Confirm your password" autocomplete="new-password" required>
+                    </div>
+                    <div class="auth-error" id="signupError"></div>
+                    <button type="submit" class="auth-submit" id="signupBtn"><i class="fas fa-user-plus"></i> Sign Up</button>
+                </form>
+            </div>
+            <div class="auth-footer">
+                <a href="#" id="authSkipLink" class="auth-skip"><i class="fas fa-arrow-right"></i> Skip for now, browse as guest</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PROFILE MODAL ==================== -->
+    <div class="profile-overlay" id="profileOverlay">
+        <div class="profile-modal">
+            <button class="auth-close" id="profileClose"><i class="fas fa-times"></i></button>
+            <div class="profile-brand">
+                <h2><i class="fas fa-id-card"></i> My Profile</h2>
+            </div>
+            <div class="profile-body">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-wrapper" id="profileAvatarWrapper">
+                        <img src="" alt="Profile" class="profile-avatar-img" id="profileAvatarImg" style="display:none">
+                        <i class="fas fa-user-circle profile-avatar-placeholder" id="profileAvatarPlaceholder"></i>
+                        <div class="profile-avatar-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Change</span>
+                        </div>
+                        <input type="file" id="profileAvatarInput" accept="image/*" style="display:none">
+                    </div>
+                </div>
+                <div class="profile-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="profile-fields">
+                        <div class="auth-field">
+                            <label>First Name</label>
+                            <input type="text" id="profileFirstName" placeholder="First name">
+                        </div>
+                        <div class="auth-field">
+                            <label>Middle Name <span class="auth-optional">(optional)</span></label>
+                            <input type="text" id="profileMiddleName" placeholder="Middle name">
+                        </div>
+                        <div class="auth-field">
+                            <label>Last Name</label>
+                            <input type="text" id="profileLastName" placeholder="Last name">
+                        </div>
+                    </div>
+                    <button class="auth-submit profile-save-btn" id="profileSaveBtn"><i class="fas fa-save"></i> Save Changes</button>
+                    <div class="profile-success" id="profileSuccess"></div>
+                    <div class="auth-error" id="profileError"></div>
+                </div>
+                <div class="profile-section">
+                    <h3><i class="fas fa-lock"></i> Change Password</h3>
+                    <div class="profile-fields">
+                        <div class="auth-field">
+                            <label>Current Password</label>
+                            <input type="password" id="profileOldPassword" placeholder="Enter current password">
+                        </div>
+                        <div class="auth-field">
+                            <label>New Password</label>
+                            <input type="password" id="profileNewPassword" placeholder="At least 4 characters">
+                        </div>
+                        <div class="auth-field">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="profileConfirmPassword" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    <a class="auth-forgot" id="profileForgotLink">Forgot Password?</a>
+                    <button class="auth-submit profile-save-btn" id="profilePasswordBtn"><i class="fas fa-key"></i> Update Password</button>
+                    <div class="profile-pw-success" id="profilePwSuccess"></div>
+                    <div class="auth-error" id="profilePwError"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CROP MODAL ==================== -->
+    <div class="crop-overlay" id="cropOverlay">
+        <div class="crop-modal">
+            <button class="auth-close" id="cropClose"><i class="fas fa-times"></i></button>
+            <div class="crop-header">
+                <h2><i class="fas fa-crop-alt"></i> Crop Profile Picture</h2>
+                <p>Drag the square to adjust the crop area.</p>
+            </div>
+            <div class="crop-body">
+                <div class="crop-viewport" id="cropViewport">
+                    <img id="cropImage" src="" alt="Crop preview">
+                    <div class="crop-mask" id="cropMask">
+                        <div class="crop-box" id="cropBox">
+                            <div class="crop-grid">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="crop-handle" id="cropHandle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crop-actions">
+                <button class="btn btn-secondary" id="cropCancelBtn"><i class="fas fa-times"></i> Cancel</button>
+                <button class="auth-submit" id="cropConfirmBtn"><i class="fas fa-check"></i> Crop & Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== USER DROPDOWN ==================== -->
+    <div class="user-dropdown" id="userDropdown">
+        <div class="user-dropdown-header">
+            <img src="" alt="" class="user-dropdown-avatar" id="dropdownAvatar" style="display:none">
+            <i class="fas fa-user-circle" id="dropdownAvatarIcon"></i>
+            <span id="dropdownUsername">User</span>
+        </div>
+        <div class="user-dropdown-body">
+            <button class="user-dropdown-item" id="profileBtn"><i class="fas fa-id-card"></i> Profile</button>
+            <button class="user-dropdown-item logout-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/products.js?v=3"></script>
+    <script src="js/auth.js?v=1"></script>
+    <script src="js/pinned.js?v=2"></script>
+
+    <script src="js/app.js?v=4"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            initApp();
+        } catch (e) {
+            console.error('DOMContentLoaded init error:', e);
+        }
+    });
+
+    function initApp() {
+        var authOverlay = document.getElementById('authOverlay');
+        var authClose = document.getElementById('authClose');
+        var userBtn = document.getElementById('userBtn');
+        var mobileUserBtn = document.getElementById('mobileUserBtn');
+        var userLabel = document.getElementById('userLabel');
+        var userDropdown = document.getElementById('userDropdown');
+        var dropdownUsername = document.getElementById('dropdownUsername');
+        var logoutBtn = document.getElementById('logoutBtn');
+
+        var profileOverlay = document.getElementById('profileOverlay');
+        var profileClose = document.getElementById('profileClose');
+        var profileBtn = document.getElementById('profileBtn');
+
+        var loginError = document.getElementById('loginError');
+        var signupError = document.getElementById('signupError');
+        var forgotError = document.getElementById('forgotError');
+        var forgotSuccess = document.getElementById('forgotSuccess');
+
+        var authSkipLink = document.getElementById('authSkipLink');
+
+        // Safe getter for auth
+        function getAuth() {
+            return (typeof auth !== 'undefined' && auth) ? auth : null;
+        }
+
+        function updateAuthUI() {
+            var a = getAuth();
+            if (!a) return;
+            try {
+                if (a.isLoggedIn()) {
+                    var display = a.getUserFirstName();
+                    if (userLabel) userLabel.textContent = display;
+                    if (userBtn) userBtn.title = 'Account';
+                    var dh = userDropdown ? userDropdown.querySelector('.user-dropdown-header') : null;
+                    if (dh) {
+                        var span = dh.querySelector('span');
+                        if (span) span.textContent = a.getUserFullName();
+                    }
+                    var pic = a.getProfilePicture();
+                    // Dropdown avatar
+                    var avatarImg = document.getElementById('dropdownAvatar');
+                    var avatarIcon = document.getElementById('dropdownAvatarIcon');
+                    // Header avatar
+                    var headerAvatar = document.getElementById('userAvatar');
+                    var headerIcon = document.getElementById('userIcon');
+                    if (pic) {
+                        if (avatarImg) { avatarImg.src = pic; avatarImg.style.display = ''; }
+                        if (avatarIcon) avatarIcon.style.display = 'none';
+                        if (headerAvatar) { headerAvatar.src = pic; headerAvatar.style.display = ''; }
+                        if (headerIcon) headerIcon.style.display = 'none';
+                    } else {
+                        if (avatarImg) avatarImg.style.display = 'none';
+                        if (avatarIcon) avatarIcon.style.display = '';
+                        if (headerAvatar) headerAvatar.style.display = 'none';
+                        if (headerIcon) headerIcon.style.display = '';
+                    }
+                    // Mobile menu user panel
+                    var mp = document.getElementById('mobileUserPanel');
+                    var gp = document.getElementById('mobileGuestPanel');
+                    var mdiv = document.getElementById('mobileUserDivider');
+                    if (mp) mp.style.display = '';
+                    if (gp) gp.style.display = 'none';
+                    if (mdiv) mdiv.style.display = '';
+                    var mu = document.getElementById('mobileUserName');
+                    if (mu) mu.textContent = a.getUserFullName();
+                    var me = document.getElementById('mobileUserEmail');
+                    if (me) me.textContent = a.getCurrentUser() || '';
+                    var mAvatar = document.getElementById('mobileUserAvatar');
+                    var mIcon = document.getElementById('mobileUserPlaceholder');
+                    if (pic) {
+                        if (mAvatar) { mAvatar.src = pic; mAvatar.style.display = ''; }
+                        if (mIcon) mIcon.style.display = 'none';
+                    } else {
+                        if (mAvatar) mAvatar.style.display = 'none';
+                        if (mIcon) mIcon.style.display = '';
+                    }
+                } else {
+                    if (userLabel) userLabel.textContent = 'Sign In';
+                    if (userBtn) userBtn.title = 'Sign In';
+                    if (userDropdown) userDropdown.style.display = 'none';
+                    var headerAvatar = document.getElementById('userAvatar');
+                    var headerIcon = document.getElementById('userIcon');
+                    if (headerAvatar) headerAvatar.style.display = 'none';
+                    if (headerIcon) headerIcon.style.display = '';
+                    // Mobile menu guest panel
+                    var mp = document.getElementById('mobileUserPanel');
+                    var gp = document.getElementById('mobileGuestPanel');
+                    var mdiv = document.getElementById('mobileUserDivider');
+                    if (mp) mp.style.display = 'none';
+                    if (gp) gp.style.display = '';
+                    if (mdiv) mdiv.style.display = 'none';
+                }
+            } catch (e) { console.error('updateAuthUI error:', e); }
+        }
+
+        function openAuthModal(force) {
+            try {
+                if (userDropdown) userDropdown.style.display = 'none';
+                if (!authOverlay) return;
+                authOverlay.style.display = 'flex';
+                if (force) {
+                    authOverlay.setAttribute('data-force', 'true');
+                    if (authClose) authClose.style.display = 'none';
+                    if (authSkipLink) authSkipLink.style.display = 'none';
+                } else {
+                    authOverlay.removeAttribute('data-force');
+                    if (authClose) authClose.style.display = '';
+                    if (authSkipLink) authSkipLink.style.display = 'none';
+                }
+                setTimeout(function() { authOverlay.classList.add('active'); }, 10);
+            } catch (e) { console.error('openAuthModal error:', e); }
+        }
+
+        function closeAuthModal() {
+            try {
+                if (!authOverlay) return;
+                authOverlay.classList.remove('active');
+                authOverlay.removeAttribute('data-force');
+                setTimeout(function() { authOverlay.style.display = 'none'; }, 300);
+                if (loginError) loginError.textContent = '';
+                if (signupError) signupError.textContent = '';
+            } catch (e) { console.error('closeAuthModal error:', e); }
+        }
+
+        // User button click
+        userBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (auth.isLoggedIn()) {
+                var rect = userBtn.getBoundingClientRect();
+                userDropdown.style.top = (rect.bottom + 8) + 'px';
+                userDropdown.style.right = (window.innerWidth - rect.right) + 'px';
+                userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+            } else {
+                openAuthModal(false);
+            }
+        });
+
+        mobileUserBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (auth.isLoggedIn()) {
+                openProfileModal();
+            } else {
+                openAuthModal(false);
+            }
+        });
+
+        // Mobile guest login button
+        var mobileGuestLoginBtn = document.getElementById('mobileGuestLoginBtn');
+        if (mobileGuestLoginBtn) {
+            mobileGuestLoginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!auth.isLoggedIn()) {
+                    openAuthModal(false);
+                }
+            });
+        }
+
+        // Close dropdown on click outside
+        document.addEventListener('click', function(e) {
+            if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.style.display = 'none';
+            }
+        });
+
+        authClose.addEventListener('click', closeAuthModal);
+
+        authSkipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAuthModal();
+        });
+
+        authOverlay.addEventListener('click', function(e) {
+            if (e.target === authOverlay && !authOverlay.hasAttribute('data-force')) closeAuthModal();
+        });
+
+        // Login form submit
+        var loginForm = document.getElementById('authFormLogin');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('loginEmail').value.trim();
+                var password = document.getElementById('loginPassword').value;
+                loginError.textContent = '';
+                if (!email) { loginError.textContent = 'Please enter your Google account email'; return; }
+                if (!password) { loginError.textContent = 'Please enter a password'; return; }
+                var result = auth.login(email, password);
+                if (result.success) {
+                    auth.migrateAnonymousPins();
+                    pinned.reload();
+                    updateAuthUI();
+                    authClose.style.display = '';
+                    closeAuthModal();
+                    loginForm.reset();
+                    if (typeof app !== 'undefined' && app.updatePinButtonStates) app.updatePinButtonStates();
+                } else {
+                    loginError.textContent = result.error;
+                }
+            });
+        }
+
+        // Signup form submit
+        var signupForm = document.getElementById('authFormSignup');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var firstName = document.getElementById('signupFirstName').value.trim();
+                var middleName = document.getElementById('signupMiddleName').value.trim();
+                var lastName = document.getElementById('signupLastName').value.trim();
+                var email = document.getElementById('signupEmail').value.trim();
+                var password = document.getElementById('signupPassword').value;
+                var confirm = document.getElementById('signupConfirm').value;
+                signupError.textContent = '';
+                if (!firstName) { signupError.textContent = 'Please enter your first name'; return; }
+                if (!lastName) { signupError.textContent = 'Please enter your last name'; return; }
+                if (!email) { signupError.textContent = 'Please enter your Google account email'; return; }
+                if (!password) { signupError.textContent = 'Please enter a password'; return; }
+                if (password !== confirm) { signupError.textContent = 'Passwords do not match'; return; }
+                var result = auth.signup(email, password, firstName, middleName, lastName);
+                if (result.success) {
+                    auth.migrateAnonymousPins();
+                    pinned.reload();
+                    updateAuthUI();
+                    authClose.style.display = '';
+                    closeAuthModal();
+                    signupForm.reset();
+                    if (typeof app !== 'undefined' && app.updatePinButtonStates) app.updatePinButtonStates();
+                } else {
+                    signupError.textContent = result.error;
+                }
+            });
+        }
+
+        // Forgot password
+        // Auth tab switching ( Login / Sign Up )
+        document.querySelectorAll('.auth-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var target = this.getAttribute('data-tab');
+                document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+                var form = document.getElementById('authForm' + (target === 'login' ? 'Login' : 'Signup'));
+                if (form) form.classList.add('active');
+                document.getElementById('loginError').textContent = '';
+                document.getElementById('signupError').textContent = '';
+                document.getElementById('forgotError').textContent = '';
+                document.getElementById('forgotSuccess').textContent = '';
+            });
+        });
+
+        var forgotLink = document.getElementById('forgotLink');
+        var forgotBackLink = document.getElementById('forgotBackLink');
+        var forgotForm = document.getElementById('authFormForgot');
+        var loginForm = document.getElementById('authFormLogin');
+
+        forgotLink.addEventListener('click', function() {
+            loginForm.classList.remove('active');
+            forgotForm.classList.add('active');
+            forgotError.textContent = '';
+            forgotSuccess.textContent = '';
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+        });
+
+        forgotBackLink.addEventListener('click', function() {
+            forgotForm.classList.remove('active');
+            loginForm.classList.add('active');
+            document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+            forgotError.textContent = '';
+            forgotSuccess.textContent = '';
+        });
+
+        // Forgot password form submit
+        if (forgotForm) {
+            forgotForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('forgotEmail').value.trim();
+                var newPw = document.getElementById('forgotNewPassword').value;
+                var confirmPw = document.getElementById('forgotConfirmPassword').value;
+                forgotError.textContent = '';
+                forgotSuccess.textContent = '';
+                if (!email) { forgotError.textContent = 'Please enter your email'; return; }
+                if (!newPw) { forgotError.textContent = 'Enter a new password'; return; }
+                if (newPw.length < 4) { forgotError.textContent = 'Password must be at least 4 characters'; return; }
+                if (newPw !== confirmPw) { forgotError.textContent = 'Passwords do not match'; return; }
+                var result = auth.resetPasswordByEmail(email, newPw);
+                if (result.success) {
+                    forgotSuccess.textContent = 'Password reset successfully! You can now log in.';
+                    forgotForm.reset();
+                } else {
+                    forgotError.textContent = result.error;
+                }
+            });
+        }
+
+        // Logout
+        logoutBtn.addEventListener('click', function() {
+            auth.logout();
+            pinned.reload();
+            updateAuthUI();
+            userDropdown.style.display = 'none';
+            if (typeof app !== 'undefined' && app.updatePinButtonStates) app.updatePinButtonStates();
+            window.location.reload();
+        });
+
+        // Profile
+        function loadProfile() {
+            var data = auth.getUserData();
+            if (!data) return;
+            document.getElementById('profileFirstName').value = data.firstName || '';
+            document.getElementById('profileMiddleName').value = data.middleName || '';
+            document.getElementById('profileLastName').value = data.lastName || '';
+            document.getElementById('profileSuccess').textContent = '';
+            document.getElementById('profileError').textContent = '';
+            document.getElementById('profilePwSuccess').textContent = '';
+            document.getElementById('profilePwError').textContent = '';
+            document.getElementById('profileOldPassword').value = '';
+            document.getElementById('profileNewPassword').value = '';
+            document.getElementById('profileConfirmPassword').value = '';
+            var pic = auth.getProfilePicture();
+            var img = document.getElementById('profileAvatarImg');
+            var placeholder = document.getElementById('profileAvatarPlaceholder');
+            if (pic) {
+                img.src = pic;
+                img.style.display = '';
+                placeholder.style.display = 'none';
+            } else {
+                img.style.display = 'none';
+                placeholder.style.display = '';
+            }
+        }
+
+        function openProfileModal() {
+            userDropdown.style.display = 'none';
+            loadProfile();
+            profileOverlay.style.display = 'flex';
+            setTimeout(function() { profileOverlay.classList.add('active'); }, 10);
+        }
+
+        function closeProfileModal() {
+            profileOverlay.classList.remove('active');
+            setTimeout(function() { profileOverlay.style.display = 'none'; }, 300);
+        }
+
+        profileBtn.addEventListener('click', function() {
+            openProfileModal();
+        });
+        profileClose.addEventListener('click', closeProfileModal);
+        profileOverlay.addEventListener('click', function(e) {
+            if (e.target === profileOverlay) closeProfileModal();
+        });
+
+        // Save profile name
+        document.getElementById('profileSaveBtn').addEventListener('click', function() {
+            var btn = this;
+            var first = document.getElementById('profileFirstName').value.trim();
+            var mid = document.getElementById('profileMiddleName').value.trim();
+            var last = document.getElementById('profileLastName').value.trim();
+            document.getElementById('profileSuccess').textContent = '';
+            document.getElementById('profileError').textContent = '';
+            if (!first) { document.getElementById('profileError').textContent = 'First name is required'; return; }
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            setTimeout(function() {
+                var result = auth.updateProfile(first, mid, last);
+                if (result.success) {
+                    document.getElementById('profileSuccess').textContent = 'Profile saved!';
+                    updateAuthUI();
+                } else {
+                    document.getElementById('profileError').textContent = result.error;
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+            }, 300);
+        });
+
+        // Profile forgot password link
+        document.getElementById('profileForgotLink').addEventListener('click', function() {
+            closeProfileModal();
+            setTimeout(function() {
+                openAuthModal(false);
+                document.getElementById('authFormLogin').classList.remove('active');
+                document.getElementById('authFormForgot').classList.add('active');
+                document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            }, 300);
+        });
+
+        // Update password
+        document.getElementById('profilePasswordBtn').addEventListener('click', function() {
+            var btn = this;
+            var oldPw = document.getElementById('profileOldPassword').value;
+            var newPw = document.getElementById('profileNewPassword').value;
+            var confirmPw = document.getElementById('profileConfirmPassword').value;
+            document.getElementById('profilePwSuccess').textContent = '';
+            document.getElementById('profilePwError').textContent = '';
+            if (!oldPw) { document.getElementById('profilePwError').textContent = 'Enter your current password'; return; }
+            if (!newPw) { document.getElementById('profilePwError').textContent = 'Enter a new password'; return; }
+            if (newPw.length < 4) { document.getElementById('profilePwError').textContent = 'Password must be at least 4 characters'; return; }
+            if (newPw !== confirmPw) { document.getElementById('profilePwError').textContent = 'Passwords do not match'; return; }
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+            setTimeout(function() {
+                var result = auth.resetPassword(oldPw, newPw);
+                if (result.success) {
+                    document.getElementById('profilePwSuccess').textContent = 'Password saved!';
+                    document.getElementById('profileOldPassword').value = '';
+                    document.getElementById('profileNewPassword').value = '';
+                    document.getElementById('profileConfirmPassword').value = '';
+                } else {
+                    document.getElementById('profilePwError').textContent = result.error;
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-key"></i> Update Password';
+            }, 300);
+        });
+
+        // Avatar upload â€” open crop modal
+        var cropOverlay = document.getElementById('cropOverlay');
+        var cropClose = document.getElementById('cropClose');
+        var cropCancelBtn = document.getElementById('cropCancelBtn');
+        var cropConfirmBtn = document.getElementById('cropConfirmBtn');
+        var cropImage = document.getElementById('cropImage');
+        var cropViewport = document.getElementById('cropViewport');
+        var cropBox = document.getElementById('cropBox');
+        var cropHandle = document.getElementById('cropHandle');
+
+        var cropFileDataUrl = null;
+
+        function openCropModal(dataUrl) {
+            cropFileDataUrl = dataUrl;
+            cropImage.src = dataUrl;
+            cropImage.onload = function() {
+                var vw = cropViewport.clientWidth;
+                var scale = vw / cropImage.naturalWidth;
+                var displayW = vw;
+                var displayH = cropImage.naturalHeight * scale;
+                cropImage.style.width = displayW + 'px';
+                cropImage.style.height = displayH + 'px';
+                cropViewport.style.height = displayH + 'px';
+                var boxSize = Math.min(displayW, displayH) * 0.8;
+                var left = (displayW - boxSize) / 2;
+                var top = (displayH - boxSize) / 2;
+                cropBox.style.left = left + 'px';
+                cropBox.style.top = top + 'px';
+                cropBox.style.width = boxSize + 'px';
+                cropBox.style.height = boxSize + 'px';
+            };
+            cropOverlay.style.display = 'flex';
+            setTimeout(function() { cropOverlay.classList.add('active'); }, 10);
+        }
+
+        function closeCropModal() {
+            cropOverlay.classList.remove('active');
+            setTimeout(function() { cropOverlay.style.display = 'none'; }, 300);
+        }
+
+        // Drag & resize crop box (always square)
+        var DRAG = 1, RESIZE = 2;
+        var interaction = 0;
+        var startX, startY, boxStartLeft, boxStartTop, boxStartSize;
+
+        cropBox.addEventListener('mousedown', function(e) {
+            if (e.target.closest('.crop-handle')) return;
+            interaction = DRAG;
+            startX = e.clientX;
+            startY = e.clientY;
+            boxStartLeft = parseFloat(cropBox.style.left);
+            boxStartTop = parseFloat(cropBox.style.top);
+            e.preventDefault();
+        });
+
+        cropHandle.addEventListener('mousedown', function(e) {
+            interaction = RESIZE;
+            startX = e.clientX;
+            startY = e.clientY;
+            boxStartSize = parseFloat(cropBox.style.width);
+            boxStartLeft = parseFloat(cropBox.style.left);
+            boxStartTop = parseFloat(cropBox.style.top);
+            e.stopPropagation();
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (interaction === DRAG) {
+                var dx = e.clientX - startX;
+                var dy = e.clientY - startY;
+                var vpRect = cropViewport.getBoundingClientRect();
+                var boxSize = parseFloat(cropBox.style.width);
+                var maxLeft = vpRect.width - boxSize;
+                var maxTop = vpRect.height - boxSize;
+                cropBox.style.left = Math.max(0, Math.min(boxStartLeft + dx, maxLeft)) + 'px';
+                cropBox.style.top = Math.max(0, Math.min(boxStartTop + dy, maxTop)) + 'px';
+            } else if (interaction === RESIZE) {
+                var dx = e.clientX - startX;
+                var dy = e.clientY - startY;
+                var newSize = Math.max(50, boxStartSize + Math.max(dx, dy));
+                var vpRect = cropViewport.getBoundingClientRect();
+                newSize = Math.min(newSize, vpRect.width - boxStartLeft, vpRect.height - boxStartTop);
+                cropBox.style.width = newSize + 'px';
+                cropBox.style.height = newSize + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            interaction = 0;
+        });
+
+        cropCancelBtn.addEventListener('click', closeCropModal);
+
+        cropConfirmBtn.addEventListener('click', function() {
+            if (!cropFileDataUrl) return;
+            var img = new Image();
+            img.onload = function() {
+                var boxLeft = parseFloat(cropBox.style.left);
+                var boxTop = parseFloat(cropBox.style.top);
+                var boxSize = parseFloat(cropBox.style.width);
+                var displayW = cropImage.width;
+                var displayH = cropImage.height;
+                var scaleX = img.naturalWidth / displayW;
+                var scaleY = img.naturalHeight / displayH;
+                var sx = boxLeft * scaleX;
+                var sy = boxTop * scaleY;
+                var sw = boxSize * scaleX;
+                var sh = boxSize * scaleY;
+                var canvas = document.createElement('canvas');
+                canvas.width = 200;
+                canvas.height = 200;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 200, 200);
+                var cropped = canvas.toDataURL('image/jpeg', 0.92);
+                auth.updateProfilePicture(cropped);
+                var avatarImg = document.getElementById('profileAvatarImg');
+                var placeholder = document.getElementById('profileAvatarPlaceholder');
+                avatarImg.src = cropped;
+                avatarImg.style.display = '';
+                placeholder.style.display = 'none';
+                updateAuthUI();
+                closeCropModal();
+            };
+            img.src = cropFileDataUrl;
+        });
+
+        cropClose.addEventListener('click', closeCropModal);
+        cropOverlay.addEventListener('click', function(e) {
+            if (e.target === cropOverlay) closeCropModal();
+        });
+
+        document.getElementById('profileAvatarWrapper').addEventListener('click', function() {
+            document.getElementById('profileAvatarInput').click();
+        });
+
+        document.getElementById('profileAvatarInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                openCropModal(ev.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Init UI
+        updateAuthUI();
+
+        // Require login to browse: force the auth modal for guests
+        if (auth && !auth.isLoggedIn()) {
+            openAuthModal(true);
+        }
+
+    };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

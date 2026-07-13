@@ -1,0 +1,18 @@
+Here are the issues I found in your PrintVerse project:
+Critical Errors
+
+2. Missing image files — index.html:1121,1169
+- images/gcash-qr.png — referenced in the GCash payment section
+- images/paypal-qr.png — referenced in the PayPal payment section
+These don't exist in your images folder. The onerror fallback will show a placeholder, but they should be added.
+
+3. Unconfigured GitHub credentials — js/app.js:13-16
+token: 'YOUR_GITHUB_TOKEN_HERE',
+repo: 'YOUR_USERNAME/YOUR_REPO_NAME'
+Order submissions will fail silently (falling back to localStorage). Either configure valid values or remove/disable the GitHub issue creation.
+
+6. Placeholder social links — index.html:68-79
+Facebook, Instagram, and TikTok URLs still use YOUR_PAGE_HERE / YOUR_USERNAME placeholders.
+
+8. Static product image URLs — js/products.js:27-33
+All product images use external via.placeholder.com URLs which will eventually break. Replace with actual image assets when you have them.

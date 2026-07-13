@@ -1,0 +1,1193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>PrintVerse Partner | Awakening Insights</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Dancing+Script:wght@500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!-- Project styles -->
+    <link rel="stylesheet" href="css/styles.css?v=36" />
+
+    <style>
+    .ai-product-modal-overlay{position:fixed;inset:0;background:rgba(13,59,102,0.55);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;}
+    .ai-product-modal-overlay.active{display:flex;}
+    .ai-product-modal{position:relative;width:100%;max-width:920px;max-height:90vh;overflow:auto;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.35);animation:aiModalIn .3s ease;}
+    @keyframes aiModalIn{from{opacity:0;transform:translateY(20px) scale(.98);}to{opacity:1;transform:none;}}
+    .ai-product-modal-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:1px solid #e5e7eb;background:#fff;color:#64748b;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;font-size:1.15rem;transition:all .2s ease;}
+    .ai-product-modal-close:hover{color:#0d3b66;border-color:#0d3b66;transform:rotate(90deg);}
+    .ai-product-modal-body{display:grid;grid-template-columns:1fr 1fr;}
+    .ai-product-gallery{padding:1.25rem;background:linear-gradient(135deg,#f8fafc,#eef2f7);}
+    .ai-card-select{position:absolute;right:8px;bottom:8px;display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,0.92);border:1px solid rgba(13,59,102,0.25);border-radius:20px;padding:.25rem .6rem;cursor:pointer;font-size:.8rem;color:#0d3b66;backdrop-filter:blur(2px);transition:all .2s ease;z-index:2;}
+    .ai-card-select:hover{border-color:#0d3b66;}
+    .ai-card-select input{width:16px;height:16px;accent-color:#0d3b66;cursor:pointer;margin:0;}
+    .ai-card-select .ai-check-label{font-weight:600;user-select:none;}
+    .ai-product-main-image img{width:100%;border-radius:12px;aspect-ratio:1/1;object-fit:cover;display:block;background:#e2e8f0;}
+    .ai-product-thumbnails{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap;}
+    .ai-product-thumbnails img{width:62px;height:62px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:border-color .2s ease;background:#e2e8f0;}
+    .ai-product-thumbnails img.active{border-color:#0d3b66;}
+    .ai-product-info{padding:1.5rem;}
+    .ai-product-info h2{font-size:1.6rem;color:#0d3b66;margin:0 0 .5rem;}
+    .ai-product-price{font-size:1.5rem;font-weight:800;color:#0d3b66;margin-bottom:.75rem;}
+    .ai-product-price .orig{text-decoration:line-through;color:#94a3b8;font-size:1rem;font-weight:500;margin-left:.5rem;}
+    .ai-product-desc{color:#475569;margin:0 0 1rem;line-height:1.6;}
+    .ai-product-features{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;}
+    .ai-product-features .feat{display:flex;align-items:center;gap:.5rem;color:#334155;font-size:.92rem;}
+    .ai-product-features .feat i{color:#0d3b66;}
+    .ai-product-actions{display:flex;gap:.75rem;align-items:center;}
+    .ai-product-actions .ai-product-check-wrapper{display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.9rem;color:#334155;}
+    .ai-product-sizes{margin-bottom:1.25rem;}
+    .ai-size-label{display:block;font-weight:600;color:#0d3b66;margin-bottom:.5rem;font-size:.9rem;}
+    .ai-size-options{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .ai-size-btn{padding:.45rem .8rem;border:2px solid #e2e8f0;border-radius:10px;background:#f1f5f9;color:#334155;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s ease;}
+    .ai-size-btn:hover{border-color:#0d3b66;}
+    .ai-size-btn.active{border-color:#0d3b66;background:#0d3b66;color:#fff;}
+    .ai-product-qty{margin-bottom:1.25rem;}
+    .ai-qty-label{display:block;font-weight:600;color:#0d3b66;margin-bottom:.5rem;font-size:.9rem;}
+    .ai-qty-controls{display:inline-flex;align-items:center;border:2px solid #e2e8f0;border-radius:10px;overflow:hidden;}
+    .ai-qty-btn{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#0d3b66;font-size:1.1rem;font-weight:700;cursor:pointer;border:none;transition:background .2s ease;}
+    .ai-qty-btn:hover{background:#e2e8f0;}
+    .ai-qty-input{width:54px;height:38px;border:none;text-align:center;font-size:.95rem;font-weight:600;color:#334155;-moz-appearance:textfield;appearance:textfield;}
+    .ai-qty-input::-webkit-outer-spin-button,.ai-qty-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+    .ai-card-qty{display:inline-flex;align-items:center;border:2px solid #e2e8f0;border-radius:10px;overflow:hidden;}
+    .ai-card-qty-btn{width:30px;height:32px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#0d3b66;font-weight:700;cursor:pointer;border:none;font-size:1rem;}
+    .ai-card-qty-btn:hover{background:#e2e8f0;}
+    .ai-card-qty-input{width:42px;height:32px;border:none;text-align:center;font-weight:600;color:#334155;-moz-appearance:textfield;appearance:textfield;}
+    .ai-card-qty-input::-webkit-outer-spin-button,.ai-card-qty-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+    .ai-card-actions-right{margin-left:auto;display:flex;align-items:center;gap:.5rem;}
+    .ai-card-buy-btn{padding:.45rem .9rem;border:none;border-radius:8px;background:#00aaff;color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:all .2s ease;}
+    .ai-card-buy-btn:hover{background:#0d3b66;transform:scale(1.05);box-shadow:0 6px 20px rgba(0,170,255,0.3);}
+    @media(max-width:768px){.ai-product-modal-body{grid-template-columns:1fr;}}
+    </style>
+
+</head>
+<body class="awakening-theme">
+  <div class="content-wrapper">
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+      <div class="loader-bubbles">
+        <div class="loader-bubble"></div>
+        <div class="loader-bubble"></div>
+        <div class="loader-bubble"></div>
+        <div class="loader-bubble"></div>
+        <div class="loader-bubble"></div>
+      </div>
+      <div class="loader-text">PrintVerse</div>
+      <div class="loader-wait">Please wait</div>
+    </div>
+
+    <!-- Header -->
+    <header class="ai-header">
+      <div class="container ai-header-container">
+        <a href="index.html" class="ai-logo-link">
+          <img src="images/logo.png" alt="PrintVerse" class="ai-header-logo" onerror="this.style.display='none';">
+          <span class="ai-header-brand">PrintVerse</span>
+        </a>
+        <div class="ai-search-bar">
+          <input type="text" id="aiSearchBar" placeholder="Search shirts, scripture..." aria-label="Search products" />
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="ai-header-actions">
+          <a href="#" class="ai-user-btn" id="aiUserBtn"><i class="fas fa-user-circle"></i> <span id="aiUserLabel">Sign In</span></a>
+          <a href="index.html" class="ai-back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+        </div>
+      </div>
+    </header>
+
+<!-- Brand Banner -->
+    <div class="ai-profile">
+        <div class="container">
+            <div class="ai-profile-inner">
+                <div class="ai-avatar">
+                    <img src="images/partners/awakening.png" alt="Awakening Insights" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%230d3b66%22/%3E%3Ctext x=%2250%22 y=%2265%22 text-anchor=%22middle%22 fill=%22%2300aaff%22 font-size=%2230%22%3E%F0%9F%95%8A%EF%B8%8F%3C/text%3E%3C/svg%3E';" />
+                </div>
+                <div class="ai-info">
+                    <div class="ai-name-row">
+                        <h1 class="ai-name">Awakening Insights</h1>
+                        <span class="ai-verified"><i class="fas fa-check-circle"></i> Verified</span>
+                    </div>
+                    <p class="ai-tagline">Biblical merch from the heart</p>
+                    <div class="ai-meta">
+                        <span class="ai-stat"><i class="fas fa-tshirt"></i> <strong id="aiProductCount">0</strong> Products</span>
+                        <span class="ai-stat ai-stat-feature"><i class="fas fa-star"></i> Featured Partner</span>
+                    </div>
+                    <p class="ai-ownership"><i class="fas fa-shield-alt"></i> This page is owned and managed by the certified partner.</p>
+                </div>
+                <div class="ai-actions">
+                    <a href="https://www.facebook.com" target="_blank" class="ai-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="ai-social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="ai-social-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <main class="ai-content">
+      <div class="container">
+        <div class="ai-products-header">
+          <h2 class="ai-section-title"><i class="fas fa-layer-group"></i> Our Collection</h2>
+          <p class="ai-products-sub">Premium biblical t-shirts, designed to uplift and inspire.</p>
+        </div>
+        <p class="ai-instructions"><i class="fas fa-info-circle"></i> Click <strong>Select</strong> on multiple items, then click <strong>Buy All</strong> to purchase them together.</p>
+        <div class="ai-toolbar" id="aiToolbar">
+          <div class="ai-toolbar-left">
+            <span class="ai-toolbar-count" id="aiSelectedCount">0 selected</span>
+            <span class="ai-toolbar-divider">|</span>
+            <span class="ai-toolbar-total" id="aiSelectedTotal">&#8369;0.00</span>
+          </div>
+          <div class="ai-toolbar-right">
+            <button class="btn btn-sm btn-outline-primary" id="aiSelectAllBtn"><i class="fas fa-check-double"></i> Select All</button>
+            <button class="btn btn-sm btn-primary" id="aiBuyAllBtn"><i class="fas fa-bolt"></i> Buy All</button>
+          </div>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </main>
+
+
+  </div><!-- ==================== AUTH SPLASH ==================== -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-modal">
+            <button class="auth-close" id="authClose" title="Skip for now"><i class="fas fa-times"></i></button>
+            <div class="auth-brand">
+                <img src="images/logo.png" alt="PrintVerse" class="auth-logo" onerror="this.style.display='none';">
+                <h1 class="auth-welcome">Welcome to PrintVerse</h1>
+                <p class="auth-subtitle">Sign up or log in to save your favorites and track orders.</p>
+            </div>
+            <div class="auth-header">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+            </div>
+            <div class="auth-body">
+                <form class="auth-form active" id="authFormLogin" autocomplete="on">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h3>Welcome Back</h3>
+                        <p>Sign in to access your account</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="loginEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" name="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+                        <a class="auth-forgot" id="forgotLink">Forgot Password?</a>
+                    </div>
+                    <div class="auth-error" id="loginError"></div>
+                    <button type="submit" class="auth-submit" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                </form>
+                <form class="auth-form" id="authFormForgot" autocomplete="off">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3>Reset Password</h3>
+                        <p>Enter your Google account and set a new password</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="forgotEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> New Password</label>
+                        <input type="password" name="newPassword" id="forgotNewPassword" placeholder="Enter new password (min 4 chars)" autocomplete="new-password" required minlength="4">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="forgotConfirmPassword" placeholder="Confirm new password" autocomplete="new-password" required>
+                    </div>
+                    <div class="auth-error" id="forgotError"></div>
+                    <div class="auth-success" id="forgotSuccess"></div>
+                    <button type="submit" class="auth-submit" id="forgotBtn"><i class="fas fa-key"></i> Reset Password</button>
+                    <a class="auth-forgot back-link" id="forgotBackLink"><i class="fas fa-arrow-left"></i> Back to Login</a>
+                </form>
+                <form class="auth-form" id="authFormSignup" autocomplete="on">
+                    <div class="auth-form-header">
+                        <div class="auth-form-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>Create Account</h3>
+                        <p>Join PrintVerse to save favorites and track orders</p>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> First Name</label>
+                        <input type="text" name="firstName" id="signupFirstName" placeholder="Enter your first name" autocomplete="given-name" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> Middle Name <span class="auth-optional">(optional)</span></label>
+                        <input type="text" name="middleName" id="signupMiddleName" placeholder="Enter your middle name" autocomplete="additional-name">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-user"></i> Last Name</label>
+                        <input type="text" name="lastName" id="signupLastName" placeholder="Enter your last name" autocomplete="family-name" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fab fa-google"></i> Google Account</label>
+                        <input type="email" name="email" id="signupEmail" placeholder="your.email@gmail.com" autocomplete="email" required>
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" name="password" id="signupPassword" placeholder="At least 4 characters" autocomplete="new-password" required minlength="4">
+                    </div>
+                    <div class="auth-field">
+                        <label><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="signupConfirm" placeholder="Confirm your password" autocomplete="new-password" required>
+                    </div>
+                    <div class="auth-error" id="signupError"></div>
+                    <button type="submit" class="auth-submit" id="signupBtn"><i class="fas fa-user-plus"></i> Sign Up</button>
+                </form>
+            </div>
+            <div class="auth-footer">
+                <a href="#" id="authSkipLink" class="auth-skip"><i class="fas fa-arrow-right"></i> Skip for now, browse as guest</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PROFILE MODAL ==================== -->
+    <div class="profile-overlay" id="profileOverlay">
+        <div class="profile-modal">
+            <button class="auth-close" id="profileClose"><i class="fas fa-times"></i></button>
+            <div class="profile-brand">
+                <h2><i class="fas fa-id-card"></i> My Profile</h2>
+            </div>
+            <div class="profile-body">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-wrapper" id="profileAvatarWrapper">
+                        <img src="" alt="Profile" class="profile-avatar-img" id="profileAvatarImg" style="display:none">
+                        <i class="fas fa-user-circle profile-avatar-placeholder" id="profileAvatarPlaceholder"></i>
+                        <div class="profile-avatar-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Change</span>
+                        </div>
+                        <input type="file" id="profileAvatarInput" accept="image/*" style="display:none">
+                    </div>
+                </div>
+                <div class="profile-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="profile-fields">
+                        <div class="auth-field">
+                            <label>First Name</label>
+                            <input type="text" id="profileFirstName" placeholder="First name">
+                        </div>
+                        <div class="auth-field">
+                            <label>Middle Name <span class="auth-optional">(optional)</span></label>
+                            <input type="text" id="profileMiddleName" placeholder="Middle name">
+                        </div>
+                        <div class="auth-field">
+                            <label>Last Name</label>
+                            <input type="text" id="profileLastName" placeholder="Last name">
+                        </div>
+                    </div>
+                    <button class="auth-submit profile-save-btn" id="profileSaveBtn"><i class="fas fa-save"></i> Save Changes</button>
+                    <div class="profile-success" id="profileSuccess"></div>
+                    <div class="auth-error" id="profileError"></div>
+                </div>
+                <div class="profile-section">
+                    <h3><i class="fas fa-lock"></i> Change Password</h3>
+                    <div class="profile-fields">
+                        <div class="auth-field">
+                            <label>Current Password</label>
+                            <input type="password" id="profileOldPassword" placeholder="Enter current password">
+                        </div>
+                        <div class="auth-field">
+                            <label>New Password</label>
+                            <input type="password" id="profileNewPassword" placeholder="At least 4 characters">
+                        </div>
+                        <div class="auth-field">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="profileConfirmPassword" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    <a class="auth-forgot" id="profileForgotLink">Forgot Password?</a>
+                    <button class="auth-submit profile-save-btn" id="profilePasswordBtn"><i class="fas fa-key"></i> Update Password</button>
+                    <div class="profile-pw-success" id="profilePwSuccess"></div>
+                    <div class="auth-error" id="profilePwError"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CROP MODAL ==================== -->
+    <div class="crop-overlay" id="cropOverlay">
+        <div class="crop-modal">
+            <button class="auth-close" id="cropClose"><i class="fas fa-times"></i></button>
+            <div class="crop-header">
+                <h2><i class="fas fa-crop-alt"></i> Crop Profile Picture</h2>
+                <p>Drag the square to adjust the crop area.</p>
+            </div>
+            <div class="crop-body">
+                <div class="crop-viewport" id="cropViewport">
+                    <img id="cropImage" src="" alt="Crop preview">
+                    <div class="crop-mask" id="cropMask">
+                        <div class="crop-box" id="cropBox">
+                            <div class="crop-grid">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="crop-handle" id="cropHandle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crop-actions">
+                <button class="btn btn-secondary" id="cropCancelBtn"><i class="fas fa-times"></i> Cancel</button>
+                <button class="auth-submit" id="cropConfirmBtn"><i class="fas fa-check"></i> Crop & Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+    <div class="ai-product-modal-overlay" id="aiProductModal">
+      <div class="ai-product-modal">
+        <button class="ai-product-modal-close" id="aiProductClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <div class="ai-product-modal-body">
+          <div class="ai-product-gallery">
+            <div class="ai-product-main-image">
+              <img id="aiProductMainImage" src="" alt="">
+            </div>
+            <div class="ai-product-thumbnails" id="aiProductThumbs"></div>
+          </div>
+          <div class="ai-product-info">
+            <h2 id="aiProductName"></h2>
+            <div class="ai-product-price" id="aiProductPrice"></div>
+            <p class="ai-product-desc" id="aiProductDesc"></p>
+            <div class="ai-product-sizes">
+              <label class="ai-size-label">Size</label>
+              <div class="ai-size-options" id="aiProductSizes"></div>
+            </div>
+            <div class="ai-product-qty">
+              <label class="ai-qty-label">Quantity</label>
+              <div class="ai-qty-controls">
+                <button type="button" class="ai-qty-btn" id="aiQtyMinus" aria-label="Decrease">&minus;</button>
+                <input type="number" class="ai-qty-input" id="aiQtyInput" value="1" min="1">
+                <button type="button" class="ai-qty-btn" id="aiQtyPlus" aria-label="Increase">+</button>
+              </div>
+            </div>
+            <div class="ai-product-features" id="aiProductFeatures"></div>
+            <div class="ai-product-actions">
+              <label class="ai-product-check-wrapper">
+                <input type="checkbox" id="aiProductSelect">
+                <span id="aiProductSelectLabel">Select</span>
+              </label>
+              <button class="btn btn-primary" id="aiProductBuyBtn"><i class="fas fa-bolt"></i> Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== USER DROPDOWN ==================== -->
+    <div class="user-dropdown" id="userDropdown">
+        <div class="user-dropdown-header">
+            <img src="" alt="" class="user-dropdown-avatar" id="dropdownAvatar" style="display:none">
+            <i class="fas fa-user-circle" id="dropdownAvatarIcon"></i>
+            <span id="dropdownUsername">User</span>
+        </div>
+        <div class="user-dropdown-body">
+            <button class="user-dropdown-item" id="profileBtn"><i class="fas fa-id-card"></i> Profile</button>
+            <button class="user-dropdown-item logout-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    
+  <script src="js/auth.js?v=1"></script>
+  <script src="js/pinned.js?v=2"></script>
+  <script src="js/products.js?v=3"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Products rendering
+        window.products = [
+          { id: 'awake-001', name: 'Armor of God', price: 699, originalPrice: 899, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'spiritual-warfare', image: 'images/aiproducts/awake-001.jpg', images: ['images/aiproducts/awake-001.jpg','images/aiproducts/awake-001-2.jpg','images/aiproducts/awake-001-3.jpg','images/aiproducts/awake-001-4.jpg','images/aiproducts/awake-001-5.jpg','images/aiproducts/awake-001-6.jpg','images/aiproducts/awake-001-7.jpg'], description: 'Wear the full armor of God and stand firm in faith.' },
+          { id: 'awake-002', name: 'Grace & Truth', price: 649, originalPrice: 849, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'grace', image: 'images/aiproducts/awake-002.jpg', images: ['images/aiproducts/awake-002.jpg','images/aiproducts/awake-002-2.jpg','images/aiproducts/awake-002-3.jpg','images/aiproducts/awake-002-4.jpg','images/aiproducts/awake-002-5.jpg','images/aiproducts/awake-002-6.jpg','images/aiproducts/awake-002-7.jpg'], description: 'Designed with grace and rooted in truth.' },
+          { id: 'awake-003', name: 'Mountain Mover', price: 749, originalPrice: 949, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'faith', image: 'images/aiproducts/awake-003.jpg', images: ['images/aiproducts/awake-003.jpg','images/aiproducts/awake-003-2.jpg','images/aiproducts/awake-003-3.jpg','images/aiproducts/awake-003-4.jpg','images/aiproducts/awake-003-5.jpg','images/aiproducts/awake-003-6.jpg','images/aiproducts/awake-003-7.jpg'], description: 'Faith that moves mountains, printed with purpose.' },
+          { id: 'awake-004', name: 'Light of the World', price: 699, originalPrice: 899, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'identity', image: 'images/aiproducts/awake-004.jpg', images: ['images/aiproducts/awake-004.jpg','images/aiproducts/awake-004-2.jpg','images/aiproducts/awake-004-3.jpg','images/aiproducts/awake-004-4.jpg','images/aiproducts/awake-004-5.jpg','images/aiproducts/awake-004-6.jpg','images/aiproducts/awake-004-7.jpg'], description: 'Let your light shine – a reminder to share His love.' },
+          { id: 'awake-005', name: 'Psalm 23 Comfort', price: 679, originalPrice: 879, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'psalms', image: 'images/aiproducts/awake-005.jpg', images: ['images/aiproducts/awake-005.jpg','images/aiproducts/awake-005-2.jpg','images/aiproducts/awake-005-3.jpg','images/aiproducts/awake-005-4.jpg','images/aiproducts/awake-005-5.jpg','images/aiproducts/awake-005-6.jpg','images/aiproducts/awake-005-7.jpg'], description: 'The Lord is my shepherd – find comfort in His word.' },
+          { id: 'awake-006', name: 'Faith Over Fear', price: 720, originalPrice: 920, type: 'physical', sizes: ['S','M','L','XL','2XL','3XL'], partner: 'awakening-insights', category: 'faith', image: 'images/aiproducts/awake-006.jpg', images: ['images/aiproducts/awake-006.jpg','images/aiproducts/awake-006-2.jpg','images/aiproducts/awake-006-3.jpg','images/aiproducts/awake-006-4.jpg','images/aiproducts/awake-006-5.jpg','images/aiproducts/awake-006-6.jpg','images/aiproducts/awake-006-7.jpg'], description: 'Walk by faith, not by fear.' }
+        ];
+
+        function handleImageError(img) {
+          img.onerror = null;
+          img.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23e8edf2%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%22100%22 y=%22110%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22%3EImage%3C/text%3E%3C/svg%3E';
+        }
+
+          const loader = document.getElementById('pageLoader');
+          if (loader) {
+            setTimeout(() => {
+              loader.classList.add('fade-out');
+              setTimeout(() => { if (loader) loader.style.display = 'none'; }, 800);
+            }, 500);
+          }
+
+          const aiProducts = window.products.filter(p => p.partner === 'awakening-insights');
+          const grid = document.getElementById('productsGrid');
+          const countEl = document.getElementById('aiProductCount');
+          if (countEl) countEl.textContent = aiProducts.length;
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const categoryParam = urlParams.get('category');
+
+          function getSelectedIds() {
+            try { return new Set(JSON.parse(sessionStorage.getItem('aiSelectedIds') || '[]')); } catch (e) { return new Set(); }
+          }
+          function saveSelectedIds(set) {
+            try { sessionStorage.setItem('aiSelectedIds', JSON.stringify(Array.from(set))); } catch (e) {}
+          }
+
+          function renderProducts(products) {
+            if (!grid) return;
+            if (products.length === 0) {
+              grid.innerHTML = '<p class=\"ai-no-products\">No products match your search.</p>';
+              return;
+            }
+            grid.innerHTML = products.map(p => {
+              var typeLabel = (p.type ? p.type.charAt(0).toUpperCase() + p.type.slice(1) : 'Product');
+              return ''
+                + '<div class=\"product-card\" data-id=\"' + p.id + '\">'
+                +   '<div class=\"product-card-image\">'
+                +     '<img src=\"' + p.image + '\" alt=\"' + p.name + '\" onerror=\"handleImageError(this)\">'
+                +     '<label class=\"ai-card-select\" title=\"Select\">'
+                +       '<input type=\"checkbox\" class=\"ai-product-check\" data-id=\"' + p.id + '\" data-price=\"' + p.price + '\">'
+                +       '<span class=\"ai-check-label\">Select</span>'
+                +     '</label>'
+                +   '</div>'
+                +   '<div class=\"product-card-content\">'
+                +     '<h3 class=\"product-card-title\">' + p.name + '</h3>'
+                +     '<p class=\"product-card-description\">' + p.description + '</p>'
+                +     '<div class=\"product-card-price\">'
+                +       '<span class=\"current-price\">₱' + p.price.toLocaleString() + '</span>'
+                +       (p.originalPrice ? '<span class=\"original-price\">₱' + p.originalPrice.toLocaleString() + '</span>' : '')
+                +     '</div>'
+                +     '<div class=\"product-card-actions\">'
+                +       '<div class=\"ai-card-actions-right\">'
+                +         '<div class=\"ai-card-qty\">'
+                +           '<button type=\"button\" class=\"ai-card-qty-btn\" data-step=\"-1\" data-id=\"' + p.id + '\">&minus;</button>'
+                +           '<input type=\"number\" class=\"ai-card-qty-input\" data-id=\"' + p.id + '\" value=\"1\" min=\"1\">'
+                +           '<button type=\"button\" class=\"ai-card-qty-btn\" data-step=\"1\" data-id=\"' + p.id + '\">+</button>'
+                +         '</div>'
+                +         '<button type=\"button\" class=\"ai-card-buy-btn\" data-id=\"' + p.id + '\">Buy</button>'
+                +       '</div>'
+                +     '</div>'
+                +   '</div>'
+                + '</div>';
+            }).join('');
+
+            var selIds = getSelectedIds();
+            grid.querySelectorAll('.ai-product-check').forEach(function(cb) {
+              if (selIds.has(cb.getAttribute('data-id'))) {
+                cb.checked = true;
+                updateCheckLabel(cb);
+              }
+            });
+            window.updateSelection();
+          }
+
+          function getChecked() {
+            return document.querySelectorAll('.ai-product-check:checked');
+          }
+
+          window.updateSelection = function() {
+            var checks = getChecked();
+            var count = 0;
+            var total = 0;
+            for (var i = 0; i < checks.length; i++) {
+              var id = checks[i].getAttribute('data-id');
+              var price = parseFloat(checks[i].getAttribute('data-price') || 0);
+              var qtyInput = document.querySelector('.ai-card-qty-input[data-id="' + id + '"]');
+              var qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+              count += qty;
+              total += price * qty;
+            }
+            document.getElementById('aiSelectedCount').textContent = count + (count === 1 ? ' item' : ' items');
+            document.getElementById('aiSelectedTotal').textContent = '₱' + total.toLocaleString(undefined, {minimumFractionDigits: 2});
+          };
+
+          function updateCheckLabel(cb) {
+            var label = cb.nextElementSibling;
+            if (label) label.textContent = cb.checked ? 'Selected' : 'Select';
+          }
+
+          grid.addEventListener('change', function(e) {
+            const cb = e.target.closest('.ai-product-check');
+            if (cb) {
+              updateCheckLabel(cb);
+              var selIds = getSelectedIds();
+              var id = cb.getAttribute('data-id');
+              if (cb.checked) selIds.add(id); else selIds.delete(id);
+              saveSelectedIds(selIds);
+              window.updateSelection();
+            }
+          });
+
+          const initial = categoryParam ? aiProducts.filter(p => p.category === categoryParam) : aiProducts;
+          renderProducts(initial);
+          window.updateSelection();
+
+          document.getElementById('aiSelectAllBtn').addEventListener('click', function() {
+            var checks = document.querySelectorAll('.ai-product-check');
+            var allChecked = true;
+            for (var i = 0; i < checks.length; i++) { if (!checks[i].checked) { allChecked = false; break; } }
+            var selIds = getSelectedIds();
+            for (var j = 0; j < checks.length; j++) {
+              checks[j].checked = !allChecked;
+              updateCheckLabel(checks[j]);
+              var id = checks[j].getAttribute('data-id');
+              if (checks[j].checked) selIds.add(id); else selIds.delete(id);
+            }
+            saveSelectedIds(selIds);
+            window.updateSelection();
+            updateSelectAllLabel();
+          });
+
+          function updateSelectAllLabel() {
+            var btn = document.getElementById('aiSelectAllBtn');
+            if (!btn) return;
+            var checks = document.querySelectorAll('.ai-product-check');
+            var allChecked = checks.length > 0;
+            for (var i = 0; i < checks.length; i++) { if (!checks[i].checked) { allChecked = false; break; } }
+            if (allChecked) {
+              btn.innerHTML = '<i class="fas fa-times-circle"></i> Deselect All';
+            } else {
+              btn.innerHTML = '<i class="fas fa-check-double"></i> Select All';
+            }
+          }
+
+          document.getElementById('aiBuyAllBtn').addEventListener('click', function() {
+            var checks = getChecked();
+            if (checks.length === 0) return;
+            var selected = [];
+            for (var i = 0; i < checks.length; i++) {
+              var id = checks[i].getAttribute('data-id');
+              var p = window.products.filter(function(x) { return x.id === id; })[0];
+              if (p) {
+                var qtyInput = document.querySelector('.ai-card-qty-input[data-id="' + id + '"]');
+                var qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+                selected.push(Object.assign({}, p, { quantity: qty }));
+              }
+            }
+            if (selected.length > 0) {
+              localStorage.removeItem('buyNowProduct');
+              localStorage.setItem('buyAllProducts', JSON.stringify(selected));
+              window.location.href = 'index.html#checkout';
+            }
+          });
+
+          const searchInput = document.getElementById('aiSearchBar');
+          if (searchInput) {
+            searchInput.addEventListener('input', function() {
+              const q = this.value.toLowerCase().trim();
+              renderProducts(aiProducts.filter(p => p.name.toLowerCase().includes(q) || (p.category && p.category.toLowerCase().includes(q))));
+              window.updateSelection();
+            });
+          }
+
+          // ===== Product detail modal (click card to view info) =====
+          const productModal = document.getElementById('aiProductModal');
+          const productClose = document.getElementById('aiProductClose');
+          const productMainImg = document.getElementById('aiProductMainImage');
+          const productThumbs = document.getElementById('aiProductThumbs');
+          const productName = document.getElementById('aiProductName');
+          const productPrice = document.getElementById('aiProductPrice');
+          const productDesc = document.getElementById('aiProductDesc');
+          const productFeatures = document.getElementById('aiProductFeatures');
+          const productSizes = document.getElementById('aiProductSizes');
+          const qtyInput = document.getElementById('aiQtyInput');
+          const qtyMinus = document.getElementById('aiQtyMinus');
+          const qtyPlus = document.getElementById('aiQtyPlus');
+          const productSelect = document.getElementById('aiProductSelect');
+          const productSelectLabel = document.getElementById('aiProductSelectLabel');
+          const productBuyBtn = document.getElementById('aiProductBuyBtn');
+          let currentDetail = null;
+          let currentSize = null;
+          let currentQty = 1;
+
+          function isProductSelected(id) {
+            return !!document.querySelector('.ai-product-check[data-id=\"' + id + '\"]:checked');
+          }
+
+          function openProductDetail(p) {
+            currentDetail = p;
+            productName.textContent = p.name;
+            productDesc.textContent = p.description || '';
+            productPrice.innerHTML = '₱' + p.price.toLocaleString() + (p.originalPrice ? '<span class=\"orig\">₱' + p.originalPrice.toLocaleString() + '</span>' : '');
+            productFeatures.innerHTML = (p.features || []).map(function(f){ return '<div class=\"feat\"><i class=\"fas fa-check-circle\"></i>' + f + '</div>'; }).join('');
+            const sizes = (p.sizes && p.sizes.length) ? p.sizes : [];
+            currentSize = sizes.length ? sizes[0] : null;
+            productSizes.innerHTML = sizes.map(function(s, i){ return '<button type=\"button\" class=\"ai-size-btn' + (i === 0 ? ' active' : '') + '\">' + s + '</button>'; }).join('');
+            productSizes.querySelectorAll('.ai-size-btn').forEach(function(b){
+              b.addEventListener('click', function(){
+                productSizes.querySelectorAll('.ai-size-btn').forEach(function(x){ x.classList.remove('active'); });
+                b.classList.add('active');
+                currentSize = b.textContent;
+              });
+            });
+            currentQty = 1;
+            qtyInput.value = 1;
+            const imgs = (p.images && p.images.length) ? p.images : [p.image];
+            productMainImg.src = imgs[0];
+            productMainImg.onerror = function(){ handleImageError(this); };
+            productThumbs.innerHTML = imgs.map(function(src, i){ return '<img src=\"' + src + '\" data-i=\"' + i + '\" class=\"' + (i === 0 ? 'active' : '') + '\" onerror=\"handleImageError(this)\">'; }).join('');
+            productThumbs.querySelectorAll('img').forEach(function(t){
+              t.addEventListener('click', function(){
+                productMainImg.src = imgs[parseInt(t.getAttribute('data-i'))];
+                productThumbs.querySelectorAll('img').forEach(function(x){ x.classList.remove('active'); });
+                t.classList.add('active');
+              });
+            });
+            const isSel = isProductSelected(p.id);
+            productSelect.checked = isSel;
+            productSelectLabel.textContent = isSel ? 'Selected' : 'Select';
+            productModal.classList.add('active');
+          }
+
+          productClose.addEventListener('click', function(){ productModal.classList.remove('active'); });
+          productModal.addEventListener('click', function(e){ if (e.target === productModal) productModal.classList.remove('active'); });
+
+          productSelect.addEventListener('change', function(){
+            if (!currentDetail) return;
+            const gridCb = document.querySelector('.ai-product-check[data-id=\"' + currentDetail.id + '\"]');
+            if (gridCb) { gridCb.checked = this.checked; updateCheckLabel(gridCb); }
+            productSelectLabel.textContent = this.checked ? 'Selected' : 'Select';
+            var selIds = getSelectedIds();
+            if (this.checked) selIds.add(currentDetail.id); else selIds.delete(currentDetail.id);
+            saveSelectedIds(selIds);
+            window.updateSelection();
+          });
+
+          function setQty(v) {
+            currentQty = Math.max(1, parseInt(v) || 1);
+            qtyInput.value = currentQty;
+          }
+
+          qtyMinus.addEventListener('click', function(){ setQty(currentQty - 1); });
+          qtyPlus.addEventListener('click', function(){ setQty(currentQty + 1); });
+          qtyInput.addEventListener('change', function(){ setQty(this.value); });
+
+          productBuyBtn.addEventListener('click', function(){
+            if (!currentDetail) return;
+            localStorage.removeItem('buyAllProducts');
+            localStorage.setItem('buyNowProduct', JSON.stringify(Object.assign({}, currentDetail, { size: currentSize, quantity: currentQty })));
+            window.location.href = 'index.html#checkout';
+          });
+
+          grid.addEventListener('click', function(e){
+            const buyBtn = e.target.closest('.ai-card-buy-btn');
+            if (buyBtn) {
+              const id = buyBtn.getAttribute('data-id');
+              const p = window.products.filter(function(x){ return x.id === id; })[0];
+              if (p) {
+                const qtyInput = document.querySelector('.ai-card-qty-input[data-id="' + id + '"]');
+                const qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+                const size = (p.sizes && p.sizes.length) ? p.sizes[0] : null;
+                localStorage.removeItem('buyAllProducts');
+                localStorage.setItem('buyNowProduct', JSON.stringify(Object.assign({}, p, { size: size, quantity: qty })));
+                window.location.href = 'index.html#checkout';
+              }
+              return;
+            }
+            const qtyBtn = e.target.closest('.ai-card-qty-btn');
+            if (qtyBtn) {
+              const id = qtyBtn.getAttribute('data-id');
+              const input = document.querySelector('.ai-card-qty-input[data-id="' + id + '"]');
+              if (input) {
+                const step = parseInt(qtyBtn.getAttribute('data-step')) || 0;
+                input.value = Math.max(1, (parseInt(input.value) || 1) + step);
+                window.updateSelection();
+              }
+              return;
+            }
+            if (e.target.closest('.ai-card-qty') || e.target.closest('.ai-card-select') || e.target.closest('.ai-product-check-wrapper')) return;
+            const card = e.target.closest('.product-card');
+            if (card) {
+              const id = card.getAttribute('data-id');
+              const p = window.products.filter(function(x){ return x.id === id; })[0];
+              if (p) openProductDetail(p);
+            }
+          });
+
+          grid.addEventListener('input', function(e){
+            if (e.target.closest('.ai-card-qty-input')) window.updateSelection();
+          });
+
+          window.handleImageError = handleImageError;
+
+          // Auth initialization
+           initAuth();
+    });
+
+    function initAuth() {
+        var profileOverlay = document.getElementById('profileOverlay');
+        var profileClose = document.getElementById('profileClose');
+        var authOverlay = document.getElementById('authOverlay');
+        var authClose = document.getElementById('authClose');
+        var authSkipLink = document.getElementById('authSkipLink');
+        var userBtn = document.getElementById('aiUserBtn');
+        var userLabel = document.getElementById('aiUserLabel');
+
+        var loginError = document.getElementById('loginError');
+        var signupError = document.getElementById('signupError');
+        var forgotError = document.getElementById('forgotError');
+        var forgotSuccess = document.getElementById('forgotSuccess');
+
+        // Safe getter for auth
+        function getAuth() {
+            return (typeof auth !== 'undefined' && auth) ? auth : null;
+        }
+
+        function updateAuthUI() {
+            var a = getAuth();
+            if (!a) return;
+            try {
+                if (a.isLoggedIn()) {
+                    var display = a.getUserFirstName();
+                    if (userLabel) userLabel.textContent = display;
+                    if (userBtn) userBtn.title = 'Account';
+                    var pic = a.getProfilePicture();
+                } else {
+                    if (userLabel) userLabel.textContent = 'Sign In';
+                    if (userBtn) userBtn.title = 'Sign In';
+                }
+            } catch (e) { console.error('updateAuthUI error:', e); }
+        }
+
+        function openAuthModal(force) {
+            try {
+                if (!authOverlay) return;
+                authOverlay.style.display = 'flex';
+                if (force) {
+                    authOverlay.setAttribute('data-force', 'true');
+                    if (authClose) authClose.style.display = 'none';
+                    if (authSkipLink) authSkipLink.style.display = 'none';
+                } else {
+                    authOverlay.removeAttribute('data-force');
+                    if (authClose) authClose.style.display = '';
+                    if (authSkipLink) authSkipLink.style.display = 'none';
+                }
+                setTimeout(function() { authOverlay.classList.add('active'); }, 10);
+            } catch (e) { console.error('openAuthModal error:', e); }
+        }
+
+        function closeAuthModal() {
+            try {
+                if (!authOverlay) return;
+                authOverlay.classList.remove('active');
+                authOverlay.removeAttribute('data-force');
+                setTimeout(function() { authOverlay.style.display = 'none'; }, 300);
+                if (loginError) loginError.textContent = '';
+                if (signupError) signupError.textContent = '';
+            } catch (e) { console.error('closeAuthModal error:', e); }
+        }
+
+        // User button click
+        userBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (auth && auth.isLoggedIn()) {
+                openProfileModal();
+            } else {
+                openAuthModal(false);
+            }
+        });
+
+        authClose.addEventListener('click', closeAuthModal);
+
+        authSkipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAuthModal();
+        });
+
+        authOverlay.addEventListener('click', function(e) {
+            if (e.target === authOverlay && !authOverlay.hasAttribute('data-force')) closeAuthModal();
+        });
+
+        // Auth tab switching (Login / Sign Up)
+        document.querySelectorAll('.auth-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var target = this.getAttribute('data-tab');
+                document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+                var form = document.getElementById('authForm' + (target === 'login' ? 'Login' : 'Signup'));
+                if (form) form.classList.add('active');
+                if (loginError) loginError.textContent = '';
+                if (signupError) signupError.textContent = '';
+                if (forgotError) forgotError.textContent = '';
+                if (forgotSuccess) forgotSuccess.textContent = '';
+            });
+        });
+
+        // Login form submit
+        var loginForm = document.getElementById('authFormLogin');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('loginEmail').value.trim();
+                var password = document.getElementById('loginPassword').value;
+                if (loginError) loginError.textContent = '';
+                if (!email) { if (loginError) loginError.textContent = 'Please enter your Google account email'; return; }
+                if (!password) { if (loginError) loginError.textContent = 'Please enter a password'; return; }
+                var result = auth.login(email, password);
+                if (result.success) {
+                    auth.migrateAnonymousPins();
+                    if (typeof pinned !== 'undefined' && pinned) pinned.reload();
+                    updateAuthUI();
+                    authClose.style.display = '';
+                    closeAuthModal();
+                    loginForm.reset();
+                } else {
+                    if (loginError) loginError.textContent = result.error;
+                }
+            });
+        }
+
+        // Signup form submit
+        var signupForm = document.getElementById('authFormSignup');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var firstName = document.getElementById('signupFirstName').value.trim();
+                var middleName = document.getElementById('signupMiddleName').value.trim();
+                var lastName = document.getElementById('signupLastName').value.trim();
+                var email = document.getElementById('signupEmail').value.trim();
+                var password = document.getElementById('signupPassword').value;
+                var confirm = document.getElementById('signupConfirm').value;
+                if (signupError) signupError.textContent = '';
+                if (!firstName) { signupError.textContent = 'Please enter your first name'; return; }
+                if (!lastName) { signupError.textContent = 'Please enter your last name'; return; }
+                if (!email) { signupError.textContent = 'Please enter your Google account email'; return; }
+                if (!password) { signupError.textContent = 'Please enter a password'; return; }
+                if (password !== confirm) { signupError.textContent = 'Passwords do not match'; return; }
+                var result = auth.signup(email, password, firstName, middleName, lastName);
+                if (result.success) {
+                    auth.migrateAnonymousPins();
+                    if (typeof pinned !== 'undefined' && pinned) pinned.reload();
+                    updateAuthUI();
+                    authClose.style.display = '';
+                    closeAuthModal();
+                    signupForm.reset();
+                } else {
+                    if (signupError) signupError.textContent = result.error;
+                }
+            });
+        }
+
+        // Forgot password
+        var forgotLink = document.getElementById('forgotLink');
+        var forgotBackLink = document.getElementById('forgotBackLink');
+        var forgotForm = document.getElementById('authFormForgot');
+        var loginFormEl = document.getElementById('authFormLogin');
+
+        forgotLink.addEventListener('click', function() {
+            loginFormEl.classList.remove('active');
+            forgotForm.classList.add('active');
+            if (forgotError) forgotError.textContent = '';
+            if (forgotSuccess) forgotSuccess.textContent = '';
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+        });
+
+        forgotBackLink.addEventListener('click', function() {
+            forgotForm.classList.remove('active');
+            loginFormEl.classList.add('active');
+            document.querySelector('.auth-tab[data-tab=\"login\"]').classList.add('active');
+            if (forgotError) forgotError.textContent = '';
+            if (forgotSuccess) forgotSuccess.textContent = '';
+        });
+
+        // Forgot password form submit
+        if (forgotForm) {
+            forgotForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('forgotEmail').value.trim();
+                var newPw = document.getElementById('forgotNewPassword').value;
+                var confirmPw = document.getElementById('forgotConfirmPassword').value;
+                if (forgotError) forgotError.textContent = '';
+                if (forgotSuccess) forgotSuccess.textContent = '';
+                if (!email) { forgotError.textContent = 'Please enter your email'; return; }
+                if (!newPw) { forgotError.textContent = 'Enter a new password'; return; }
+                if (newPw.length < 4) { forgotError.textContent = 'Password must be at least 4 characters'; return; }
+                if (newPw !== confirmPw) { forgotError.textContent = 'Passwords do not match'; return; }
+                var result = auth.resetPasswordByEmail(email, newPw);
+                if (result.success) {
+                    forgotSuccess.textContent = 'Password reset successfully! You can now log in.';
+                    forgotForm.reset();
+                } else {
+                    forgotError.textContent = result.error;
+                }
+            });
+        }
+
+        // Profile modal
+        function loadProfile() {
+            var data = auth.getUserData();
+            if (!data) return;
+            document.getElementById('profileFirstName').value = data.firstName || '';
+            document.getElementById('profileMiddleName').value = data.middleName || '';
+            document.getElementById('profileLastName').value = data.lastName || '';
+            document.getElementById('profileSuccess').textContent = '';
+            document.getElementById('profileError').textContent = '';
+            document.getElementById('profilePwSuccess').textContent = '';
+            document.getElementById('profilePwError').textContent = '';
+            document.getElementById('profileOldPassword').value = '';
+            document.getElementById('profileNewPassword').value = '';
+            document.getElementById('profileConfirmPassword').value = '';
+            var pic = auth.getProfilePicture();
+            var img = document.getElementById('profileAvatarImg');
+            var placeholder = document.getElementById('profileAvatarPlaceholder');
+            if (pic) {
+                img.src = pic;
+                img.style.display = '';
+                placeholder.style.display = 'none';
+            } else {
+                img.style.display = 'none';
+                placeholder.style.display = '';
+            }
+        }
+
+        function openProfileModal() {
+            loadProfile();
+            profileOverlay.style.display = 'flex';
+            setTimeout(function() { profileOverlay.classList.add('active'); }, 10);
+        }
+
+        function closeProfileModal() {
+            profileOverlay.classList.remove('active');
+            setTimeout(function() { profileOverlay.style.display = 'none'; }, 300);
+        }
+
+        // No profile button in awakening header, but keep handlers for completeness
+        profileClose.addEventListener('click', closeProfileModal);
+        profileOverlay.addEventListener('click', function(e) {
+            if (e.target === profileOverlay) closeProfileModal();
+        });
+
+        // Save profile name
+        document.getElementById('profileSaveBtn').addEventListener('click', function() {
+            var btn = this;
+            var first = document.getElementById('profileFirstName').value.trim();
+            var mid = document.getElementById('profileMiddleName').value.trim();
+            var last = document.getElementById('profileLastName').value.trim();
+            document.getElementById('profileSuccess').textContent = '';
+            document.getElementById('profileError').textContent = '';
+            if (!first) { document.getElementById('profileError').textContent = 'First name is required'; return; }
+            btn.disabled = true;
+            btn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i> Saving...';
+            setTimeout(function() {
+                var result = auth.updateProfile(first, mid, last);
+                if (result.success) {
+                    document.getElementById('profileSuccess').textContent = 'Profile saved!';
+                    updateAuthUI();
+                } else {
+                    document.getElementById('profileError').textContent = result.error;
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class=\"fas fa-save\"></i> Save Changes';
+            }, 300);
+        });
+
+        // Profile forgot password link
+        document.getElementById('profileForgotLink').addEventListener('click', function() {
+            closeProfileModal();
+            setTimeout(function() {
+                openAuthModal(false);
+                document.getElementById('authFormLogin').classList.remove('active');
+                document.getElementById('authFormForgot').classList.add('active');
+                document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            }, 300);
+        });
+
+        // Update password
+        document.getElementById('profilePasswordBtn').addEventListener('click', function() {
+            var btn = this;
+            var oldPw = document.getElementById('profileOldPassword').value;
+            var newPw = document.getElementById('profileNewPassword').value;
+            var confirmPw = document.getElementById('profileConfirmPassword').value;
+            document.getElementById('profilePwSuccess').textContent = '';
+            document.getElementById('profilePwError').textContent = '';
+            if (!oldPw) { document.getElementById('profilePwError').textContent = 'Enter your current password'; return; }
+            if (!newPw) { document.getElementById('profilePwError').textContent = 'Enter a new password'; return; }
+            if (newPw.length < 4) { document.getElementById('profilePwError').textContent = 'Password must be at least 4 characters'; return; }
+            if (newPw !== confirmPw) { document.getElementById('profilePwError').textContent = 'Passwords do not match'; return; }
+            btn.disabled = true;
+            btn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i> Updating...';
+            setTimeout(function() {
+                var result = auth.resetPassword(oldPw, newPw);
+                if (result.success) {
+                    document.getElementById('profilePwSuccess').textContent = 'Password saved!';
+                    document.getElementById('profileOldPassword').value = '';
+                    document.getElementById('profileNewPassword').value = '';
+                    document.getElementById('profileConfirmPassword').value = '';
+                } else {
+                    document.getElementById('profilePwError').textContent = result.error;
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class=\"fas fa-key\"></i> Update Password';
+            }, 300);
+        });
+
+        // Avatar upload - open crop modal
+        var cropOverlay = document.getElementById('cropOverlay');
+        var cropClose = document.getElementById('cropClose');
+        var cropCancelBtn = document.getElementById('cropCancelBtn');
+        var cropConfirmBtn = document.getElementById('cropConfirmBtn');
+        var cropImage = document.getElementById('cropImage');
+        var cropViewport = document.getElementById('cropViewport');
+        var cropBox = document.getElementById('cropBox');
+        var cropHandle = document.getElementById('cropHandle');
+
+        var cropFileDataUrl = null;
+
+        function openCropModal(dataUrl) {
+            cropFileDataUrl = dataUrl;
+            cropImage.src = dataUrl;
+            cropImage.onload = function() {
+                var vw = cropViewport.clientWidth;
+                var scale = vw / cropImage.naturalWidth;
+                var displayW = vw;
+                var displayH = cropImage.naturalHeight * scale;
+                cropImage.style.width = displayW + 'px';
+                cropImage.style.height = displayH + 'px';
+                cropViewport.style.height = displayH + 'px';
+                var boxSize = Math.min(displayW, displayH) * 0.8;
+                var left = (displayW - boxSize) / 2;
+                var top = (displayH - boxSize) / 2;
+                cropBox.style.left = left + 'px';
+                cropBox.style.top = top + 'px';
+                cropBox.style.width = boxSize + 'px';
+                cropBox.style.height = boxSize + 'px';
+            };
+            cropOverlay.style.display = 'flex';
+            setTimeout(function() { cropOverlay.classList.add('active'); }, 10);
+        }
+
+        function closeCropModal() {
+            cropOverlay.classList.remove('active');
+            setTimeout(function() { cropOverlay.style.display = 'none'; }, 300);
+        }
+
+        // Drag & resize crop box (always square)
+        var DRAG = 1, RESIZE = 2;
+        var interaction = 0;
+        var startX, startY, boxStartLeft, boxStartTop, boxStartSize;
+
+        cropBox.addEventListener('mousedown', function(e) {
+            if (e.target.closest('.crop-handle')) return;
+            interaction = DRAG;
+            startX = e.clientX;
+            startY = e.clientY;
+            boxStartLeft = parseFloat(cropBox.style.left);
+            boxStartTop = parseFloat(cropBox.style.top);
+            e.preventDefault();
+        });
+
+        cropHandle.addEventListener('mousedown', function(e) {
+            interaction = RESIZE;
+            startX = e.clientX;
+            startY = e.clientY;
+            boxStartSize = parseFloat(cropBox.style.width);
+            boxStartLeft = parseFloat(cropBox.style.left);
+            boxStartTop = parseFloat(cropBox.style.top);
+            e.stopPropagation();
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (interaction === DRAG) {
+                var dx = e.clientX - startX;
+                var dy = e.clientY - startY;
+                var vpRect = cropViewport.getBoundingClientRect();
+                var boxSize = parseFloat(cropBox.style.width);
+                var maxLeft = vpRect.width - boxSize;
+                var maxTop = vpRect.height - boxSize;
+                cropBox.style.left = Math.max(0, Math.min(boxStartLeft + dx, maxLeft)) + 'px';
+                cropBox.style.top = Math.max(0, Math.min(boxStartTop + dy, maxTop)) + 'px';
+            } else if (interaction === RESIZE) {
+                var dx = e.clientX - startX;
+                var dy = e.clientY - startY;
+                var newSize = Math.max(50, boxStartSize + Math.max(dx, dy));
+                var vpRect = cropViewport.getBoundingClientRect();
+                newSize = Math.min(newSize, vpRect.width - boxStartLeft, vpRect.height - boxStartTop);
+                cropBox.style.width = newSize + 'px';
+                cropBox.style.height = newSize + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            interaction = 0;
+        });
+
+        cropCancelBtn.addEventListener('click', closeCropModal);
+
+        cropConfirmBtn.addEventListener('click', function() {
+            if (!cropFileDataUrl) return;
+            var img = new Image();
+            img.onload = function() {
+                var boxLeft = parseFloat(cropBox.style.left);
+                var boxTop = parseFloat(cropBox.style.top);
+                var boxSize = parseFloat(cropBox.style.width);
+                var displayW = cropImage.width;
+                var displayH = cropImage.height;
+                var scaleX = img.naturalWidth / displayW;
+                var scaleY = img.naturalHeight / displayH;
+                var sx = boxLeft * scaleX;
+                var sy = boxTop * scaleY;
+                var sw = boxSize * scaleX;
+                var sh = boxSize * scaleY;
+                var canvas = document.createElement('canvas');
+                canvas.width = 200;
+                canvas.height = 200;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 200, 200);
+                var cropped = canvas.toDataURL('image/jpeg', 0.92);
+                auth.updateProfilePicture(cropped);
+                var avatarImg = document.getElementById('profileAvatarImg');
+                var placeholder = document.getElementById('profileAvatarPlaceholder');
+                avatarImg.src = cropped;
+                avatarImg.style.display = '';
+                placeholder.style.display = 'none';
+                updateAuthUI();
+                closeCropModal();
+            };
+            img.src = cropFileDataUrl;
+        });
+
+        cropClose.addEventListener('click', closeCropModal);
+        cropOverlay.addEventListener('click', function(e) {
+            if (e.target === cropOverlay) closeCropModal();
+        });
+
+        document.getElementById('profileAvatarWrapper').addEventListener('click', function() {
+            document.getElementById('profileAvatarInput').click();
+        });
+
+        document.getElementById('profileAvatarInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                openCropModal(ev.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Init UI
+        updateAuthUI();
+
+        // Require login to browse this partner page
+        if (auth && !auth.isLoggedIn()) {
+            openAuthModal(true);
+        }
+    }
+    </script>
+
+</body>
+</html>

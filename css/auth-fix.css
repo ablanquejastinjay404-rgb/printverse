@@ -1,0 +1,35 @@
+/* AUTH OVERLAY FIX */
+.auth-overlay {
+    display: flex !important;
+}
+
+.auth-overlay:not(.active) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.auth-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* USER DROPDOWN POSITIONING FIX */
+.user-dropdown {
+    display: none;
+    position: fixed !important;
+    z-index: 1200 !important;
+    min-width: 200px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(13, 59, 102, 0.25);
+    overflow: hidden;
+}
+
+.user-dropdown.active,
+.user-dropdown[style*="display: block"],
+.user-dropdown[style*="display:block"] {
+    display: block;
+}
